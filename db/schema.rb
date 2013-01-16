@@ -11,13 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130114191915) do
+ActiveRecord::Schema.define(:version => 20130116154406) do
 
   create_table "providers", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "specification_categories", :force => true do |t|
+    t.string   "code"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "specification_category_translations", :force => true do |t|
+    t.integer  "specification_category_id"
+    t.string   "locale"
+    t.string   "description"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "specification_category_translations", ["locale"], :name => "index_specification_category_translations_on_locale"
+  add_index "specification_category_translations", ["specification_category_id"], :name => "index_a3a0b1fac5b470d9faf4bbe528b4e4e708022e63"
+
+  create_table "specifications", :force => true do |t|
+    t.string   "description"
+    t.integer  "specification_category_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "spree_activators", :force => true do |t|

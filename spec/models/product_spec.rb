@@ -10,5 +10,12 @@ describe Spree::Product do
   subject { @product }
   
   it { should respond_to(:provider) }
+  it { should respond_to(:provider_id) }
+#  it { should respond_to(:requirements) }
+
+  describe "when provider is not present" do
+    before { @product.provider = nil }
+    it { should_not be_valid }
+  end
   
 end
