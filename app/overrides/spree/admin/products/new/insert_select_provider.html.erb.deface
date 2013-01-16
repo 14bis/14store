@@ -1,0 +1,8 @@
+<!-- insert_before "code[erb-loud]:contains('f.field_container :name')" -->
+
+<div class="fullwidth">
+  <%= f.field_container :provider do %>
+    <%= f.label :provider_id, t(:provider) %><br />
+    <%= f.collection_select :provider_id, Provider.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+  <% end %>
+</div>

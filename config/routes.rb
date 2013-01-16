@@ -2,6 +2,8 @@ Store14::Application.routes.draw do
 
   namespace :admin do
     resources :providers
+    resources :specification_categories
+    resources :specifications
   end 
 
   # This line mounts Spree's routes at the root of your application.

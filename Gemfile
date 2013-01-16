@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+gem 'globalize3'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -9,6 +11,12 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.11.0'
 end
+
+group :development do
+  # Generate UML Diagrams
+  gem 'railroady'
+end
+
 group :test do
   gem 'capybara', '1.1.2'
 end

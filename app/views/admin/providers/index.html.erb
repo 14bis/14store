@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:new_pprovider), main_app.new_admin_provider_url, :icon => 'icon-plus', :id => 'admin_new_provider' %>
+    <%= button_link_to t(:new_pprovider), main_app.new_admin_provider_url, :icon => 'icon-plus', :id => 'admin_new_provider_link' %>
   </li>
 <% end %>
 
@@ -13,8 +13,8 @@
   <table class="index" id="listing_providers">
      <colgroup>
       <col style="width: 45%">
-      <col style="width: 35%">
-      <col style="width: 20%;">
+      <col style="width: 40%">
+      <col style="width: 15%;">
     </colgroup>
     <thead>
       <tr data-hook="admin_shipping_methods_index_headers">
