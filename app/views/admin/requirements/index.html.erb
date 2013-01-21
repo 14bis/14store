@@ -1,0 +1,19 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'Requirements' } %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @product } %>
+
+<%= form_for @product, :url => admin_product_url(@product), :method => :put do |f| %>
+  <fieldset class="no-border-top">
+  
+    <%= f.field_container :requirements do %>
+      <%= f.label :specification_ids, t(:requirements) %>
+      <%= f.select :specification_ids, Specification.all.map {|s| [s.description, s.id]}, {}, :class => "select2", :multiple => true %>
+    <% end %>
+    
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+
+    <%= hidden_field_tag 'clear_product_properties', 'true' %>
+  </fieldset>
+<% end %>
