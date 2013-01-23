@@ -1,0 +1,3 @@
+<!-- insert_after "code[erb-loud]:contains('tab :products')" -->
+
+<%= tab :providers, :url => main_app.admin_providers_path, :icon => 'icon-th-large' %>

@@ -1,0 +1,19 @@
+<div data-hook="admin_specifications_form_fields">
+
+  <div class="alpha four columns">
+  <%= f.field_container :specification_category do %>
+    <%= f.label :specification_category_id, t(:specification_category) %><br />
+    <%= f.collection_select :specification_category_id, SpecificationCategory.all, :id, :description, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+  <% end %>
+</div>
+
+  <div class="alpha four columns">
+    <%= f.field_container :description do %>
+      <%= f.label :description, t(:description) %><br />
+      <%= f.text_field :description, :class => 'fullwidth' %>
+      <%= error_message_on :specification, :description %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+<div>
