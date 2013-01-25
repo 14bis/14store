@@ -24,3 +24,7 @@ doc/
 
 # It might also be worthwhile to include the public/assets directory as recommended by Spree
 public/assets/
+
+
+# Created by gems under development or test enviroment
+/coverage

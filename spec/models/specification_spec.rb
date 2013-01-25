@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Specification do
 
-  before { @specification = Specification.new(description: "Specification 1") }
+  before { @specification = FactoryGirl.build(:specification) }
   
   subject { @specification }
   
@@ -10,9 +10,14 @@ describe Specification do
   it { should respond_to(:specification_category_id) }
   it { should respond_to(:specification_category) }
 
-  describe "when specification_category is not present" do
-    before { @specification.specification_category = nil }
-    it { should_not be_valid }
+  describe "during validation" do
+    it "has a valid factory" do
+      should be_valid
+    end
+    it "is invalid when specification_category is not present" do
+      @specification.specification_category = nil
+      should_not be_valid
+    end
   end
 
 end

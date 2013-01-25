@@ -2,31 +2,33 @@ require 'spec_helper'
 
 describe SpecificationCategory do
 
-  before { @sc = SpecificationCategory.new(code: "T", description: "Test") }
+  before { @sc = FactoryGirl.build(:specification_category) }
 
   subject { @sc }
   
   it { should respond_to(:code) }
   it { should respond_to(:description) }
   
-  describe "when code is not present" do
-    before { @sc.code = "  " }
-    it { should_not be_valid }
-  end
-  
-  describe "when code is already taken" do
-    before do
+  describe "during validation" do
+    it "has a valid factory" do
+      should be_valid
+    end
+    it "is invalid when code is blank" do
+      @sc.code = "   "
+      should_not be_valid
+    end
+    
+    it "is invalid when code is already taken" do
       sc_with_same_code = @sc.dup
       sc_with_same_code.code = @sc.code.downcase
       sc_with_same_code.save!
+      should_not be_valid
     end
-
-    it { should_not be_valid }
+    
+    it "is invalid when description is blank" do
+      @sc.description = "  "
+      should_not be_valid
+    end
   end
   
-  describe "when description is not present" do
-    before { @sc.description = "  " }
-    it { should_not be_valid }
-  end
-    
 end

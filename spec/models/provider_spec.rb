@@ -1,46 +1,46 @@
 require 'spec_helper'
 
 describe Provider do
-  before { @provider = Provider.new(name: "Provider 1", email: "provider1@provider1.com") }
+  before { @provider = FactoryGirl.build(:provider) }
   
   subject { @provider }
   
   it { should respond_to(:name) }
   it { should respond_to(:email) }
   
-  it { should be_valid }
-  
-  describe "when name is not present should be invalid" do
-    before { @provider.name = "  " }
-    it { should_not be_valid }
-  end
-  
-  describe "when name is too long should be invalid" do
-    before { @provider.name = "a" * 51 }
-    it { should_not be_valid }
-  end
+  describe "during validation" do
+    it "has a valid factory" do
+      should be_valid
+    end
+    
+    it "is invalid when name is not present" do
+      @provider.name = "  "
+      should_not be_valid
+    end
+    
+    it "is invalid when name is too long" do
+      @provider.name = "a" * 51
+      should_not be_valid
+    end
 
-  describe "when email is not present should be invalid" do
-    before { @provider.email = " " }
-    it { should_not be_valid }
-  end
-  
-  describe "when email format is invalid" do
-    it "should be invalid" do
+    it "is invalid when email is not present" do
+      @provider.email = " "
+      should_not be_valid
+    end
+    
+    it "is invalid when email format is invalid" do
       addresses = %w[provider@foo,com provider_at_foo.org example.provider@foo.]
       addresses.each do |invalid_address|
         @provider.email = invalid_address
-        @provider.should_not be_valid
+        should_not be_valid
       end
     end
-  end
 
-  describe "when email format is valid" do
-    it "should be valid" do
+    it "is valid when email format is valid" do
       addresses = %w[provider@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
       addresses.each do |valid_address|
         @provider.email = valid_address
-        @provider.should be_valid
+        should be_valid
       end
     end
   end

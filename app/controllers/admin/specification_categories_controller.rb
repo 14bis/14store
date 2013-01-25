@@ -6,4 +6,9 @@ class Admin::SpecificationCategoriesController < Admin::ResourceController
     SpecificationCategory
   end
   
+  def show
+    session[:return_to] ||= request.referer
+    redirect_to( main_app.edit_admin_specification_category_url(params[:id]) )
+  end
+  
 end
