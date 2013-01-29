@@ -1,4 +1,4 @@
-class Admin::SpecificationsController < Admin::ResourceController
+class Spree::Admin::SpecificationsController < Spree::Admin::ResourceController
   # GET /admin/providers
   # GET /admin/providers.json
   
@@ -8,7 +8,7 @@ class Admin::SpecificationsController < Admin::ResourceController
   
   def show
     session[:return_to] ||= request.referer
-    redirect_to( main_app.edit_admin_specification_url(params[:id]) )
+    redirect_to( :action => :edit )
   end
   
 end

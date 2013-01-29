@@ -2,21 +2,7 @@ Store14::Application.routes.draw do
 
   mount Spree::Core::Engine, :at => '/'
 
-  namespace :admin do
-    resources :providers
-    resources :specification_categories
-    resources :specifications
-    resources :products do
-      resources :requirements
-#       do
-#        member do
-#          get 'requirements/', controller: 'requirements', action: 'edit'
-#          get 'requirements/edit', controller: 'requirements', action: 'edit'
-#          put 'requirements/update', controller: 'requirements'
-#        end
-#     # end
-    end
-  end
+
 
 
   # This line mounts Spree's routes at the root of your application.
@@ -84,10 +70,20 @@ Store14::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 
-#Spree::Core::Engine.routes.prepend do
-#  namespace :admin do
-#    resources :products do
-#      resources :requirements, :controller => main_app."requirements"
-#    end
-#  end 
-#end
+Spree::Core::Engine.routes.prepend do
+    namespace :admin do
+      resources :providers
+      resources :specification_categories
+      resources :specifications
+      resources :products do
+        resources :requirements
+  #       do
+  #        member do
+  #          get 'requirements/', controller: 'requirements', action: 'edit'
+  #          get 'requirements/edit', controller: 'requirements', action: 'edit'
+  #          put 'requirements/update', controller: 'requirements'
+  #        end
+  #     # end
+      end
+  end
+end

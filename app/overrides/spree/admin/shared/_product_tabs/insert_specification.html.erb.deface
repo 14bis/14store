@@ -1,5 +1,5 @@
 <!-- insert_after "li:nth-child(2)" -->
 
 <li<%== ' class="active"' if current == 'Requirements' %>>
-  <%= link_to_with_icon 'icon-file', t(:requirements), main_app.admin_product_requirements_url(@product) %>
+  <%= link_to_with_icon 'icon-file', t(:requirements), admin_product_requirements_url(@product) %>
 </li>

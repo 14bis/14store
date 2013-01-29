@@ -4,7 +4,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:new_pprovider), main_app.new_admin_provider_url, :icon => 'icon-plus', :id => 'admin_new_provider_link' %>
+    <%= button_link_to t(:new_pprovider), new_admin_provider_url, :icon => 'icon-plus', :id => 'admin_new_provider_link' %>
   </li>
 <% end %>
 
@@ -29,9 +29,9 @@
           <td><%= provider.name %></td>
           <td><%= provider.email %></td>
           <td class="actions">
-              <%= link_to_edit_url main_app.edit_admin_provider_url(provider), :no_text => true %>
+              <%= link_to_edit_url edit_admin_provider_url(provider), :no_text => true %>
               &nbsp;
-              <%= link_to_delete provider, :url => main_app.admin_provider_url(provider), :no_text => true %>
+              <%= link_to_delete provider, :url => admin_provider_url(provider), :no_text => true %>
           </td>
         </tr>
       <% end %>
