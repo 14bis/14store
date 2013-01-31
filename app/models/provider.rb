@@ -5,7 +5,7 @@ class Provider < ActiveRecord::Base
   # As long as we are going to use email validation on other parts of the project
   # Refactor this
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  
+  has_many :products, :class_name => "Spree::Product"
   validates :name,  presence: true, length: { maximum: 50 }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   

@@ -6,7 +6,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:new_specification_category), main_app.new_admin_specification_category_url, :icon => 'icon-plus', :id => 'admin_new_specification_category_link' %>
+    <%= button_link_to t(:new_specification_category), new_admin_specification_category_url, :icon => 'icon-plus', :id => 'admin_new_specification_category_link' %>
   </li>
 <% end %>
 
@@ -30,8 +30,8 @@
           <td><%= specification_category.code %></td>
           <td><%= specification_category.description %></td>
           <td data-hook="admin_specification_categories_index_row_actions" class="actions">
-            <%= link_to_edit_url main_app.edit_admin_specification_category_url(specification_category), :no_text => true%>
-            <%= link_to_delete specification_category, :url => main_app.admin_specification_category_url(specification_category), :no_text => true %>
+            <%= link_to_edit_url edit_admin_specification_category_url(specification_category), :no_text => true%>
+            <%= link_to_delete specification_category, :url => admin_specification_category_url(specification_category), :no_text => true %>
           </td>
         </tr>
       <% end %>

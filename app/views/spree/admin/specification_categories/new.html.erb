@@ -5,12 +5,12 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <li><%= link_to_with_icon 'icon-arrow-left', t(:back_to_specification_categories_list), main_app.admin_specification_categories_path, :class => 'button' %></li>
+  <li><%= link_to_with_icon 'icon-arrow-left', t(:back_to_specification_categories_list), admin_specification_categories_path, :class => 'button' %></li>
 <% end %>
 
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @specification_category } %>
 
-<%= form_for @specification_category, :url => main_app.admin_specification_categories_path do |f| %>
+<%= form_for @specification_category, :url => admin_specification_categories_path do |f| %>
   <fieldset class="no-border-top">
     <%= render :partial => 'form', :locals => { :f => f } %>
     
