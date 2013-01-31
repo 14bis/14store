@@ -11,7 +11,50 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109180149) do
+ActiveRecord::Schema.define(:version => 20130130171734) do
+
+  create_table "providers", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "requirements", :force => true do |t|
+    t.integer  "value"
+    t.integer  "product_id"
+    t.integer  "specification_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "requirements", ["product_id"], :name => "index_requirements_on_product_id"
+  add_index "requirements", ["specification_id"], :name => "index_requirements_on_specification_id"
+
+  create_table "specification_categories", :force => true do |t|
+    t.string   "code"
+    t.string   "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "specification_category_translations", :force => true do |t|
+    t.integer  "specification_category_id"
+    t.string   "locale"
+    t.string   "description"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "specification_category_translations", ["locale"], :name => "index_specification_category_translations_on_locale"
+  add_index "specification_category_translations", ["specification_category_id"], :name => "index_a3a0b1fac5b470d9faf4bbe528b4e4e708022e63"
+
+  create_table "specifications", :force => true do |t|
+    t.string   "description"
+    t.integer  "specification_category_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "spree_activators", :force => true do |t|
     t.string   "description"
@@ -245,6 +288,7 @@ ActiveRecord::Schema.define(:version => 20130109180149) do
     t.datetime "deleted_at"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "display_on"
   end
 
   create_table "spree_payments", :force => true do |t|
@@ -308,6 +352,7 @@ ActiveRecord::Schema.define(:version => 20130109180149) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.boolean  "on_demand",            :default => false
+    t.integer  "provider_id"
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"

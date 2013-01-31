@@ -1,0 +1,19 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= t(:edit_specification) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon 'icon-arrow-left', t(:back_to_specifications_list), admin_specifications_path, :class => 'button' %></li>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @specification } %>
+
+<%= form_for @specification, :url => admin_specification_path, :method => :put do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

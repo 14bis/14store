@@ -1,0 +1,27 @@
+<% content_for :page_title do %>
+  <%= t(:new_provider) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:back_to_providers_list), admin_providers_path, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
+
+<div data-hook="admin_provider_new_form_header">
+  <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @provider } %>
+</div>
+
+<div data-hook="admin_provider_new_form">
+  <%= form_for @provider, :url => admin_providers_path do |f| %>
+    <fieldset class="no-border-top">
+      <%= render :partial => 'form', :locals => { :f => f } %>
+
+      <div class="clear"></div>
+
+      <div data-hook="admin_provider_new_form_buttons">
+        <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

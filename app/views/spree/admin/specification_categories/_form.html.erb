@@ -1,0 +1,20 @@
+<div data-hook="admin_specification_categories_form_fields">
+
+  <div class="alpha four columns">
+    <%= f.field_container :code do %>
+      <%= f.label :code, t(:code) %><br />
+      <%= f.text_field :code, :class => 'fullwidth' %>
+      <%= error_message_on :specification, :code %>
+    <% end %>
+  </div>
+  
+  <div class="alpha four columns">
+    <%= f.field_container :description do %>
+      <%= f.label :description, t(:description) %><br />
+      <%= f.text_field :description, :class => 'fullwidth' %>
+      <%= error_message_on :specification, :description %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+<div>

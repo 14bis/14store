@@ -1,0 +1,19 @@
+<div data-hook="admin_provider_form_fields">
+  <div class="alpha four columns">
+    <%= f.field_container :name do %>
+      <%= f.label :name, t(:name) %><br />
+      <%= f.text_field :name, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :name %>
+    <% end %>
+  </div>
+
+  <div class="four columns">
+    <%= f.field_container :email do %>
+      <%= f.label :email, t(:email) %><br />
+      <%= f.text_field :email, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :email %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+<div>

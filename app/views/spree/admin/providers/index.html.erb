@@ -1,0 +1,44 @@
+<% content_for :page_title do %>
+  <%= t(:listing_providers) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:new_pprovider), new_admin_provider_url, :icon => 'icon-plus', :id => 'admin_new_provider_link' %>
+  </li>
+<% end %>
+
+<% if @providers.any? %>
+
+  <table class="index" id="listing_providers">
+     <colgroup>
+      <col style="width: 45%">
+      <col style="width: 40%">
+      <col style="width: 15%;">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_shipping_methods_index_headers">
+        <th><%= t(:name) %></th>
+        <th><%= t(:email) %></th>
+        <th data-hook="admin_products_index_header_actions" class="actions"></th>
+      </tr>
+    <thead>
+    <tbody>
+      <% @providers.each do |provider| %>
+        <tr id="<%= dom_id provider %>">
+          <td><%= provider.name %></td>
+          <td><%= provider.email %></td>
+          <td class="actions">
+              <%= link_to_edit_url edit_admin_provider_url(provider), :no_text => true %>
+              &nbsp;
+              <%= link_to_delete provider, :url => admin_provider_url(provider), :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+     </tbody>
+  </table>
+<% else %>
+  <div class="no-objects-found">
+    <%= t(:no_results) %>
+  </div>
+<% end %>

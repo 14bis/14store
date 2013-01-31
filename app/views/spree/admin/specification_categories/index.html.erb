@@ -1,0 +1,40 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= t(:specification_categories) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:new_specification_category), new_admin_specification_category_url, :icon => 'icon-plus', :id => 'admin_new_specification_category_link' %>
+  </li>
+<% end %>
+
+<% unless @specification_categories.any? %>
+  <div class="no-objects-found"><%= t(:no_results) %></div>
+<% else %>
+  <table class="index" id="specification_categories_listing">
+    <colgroup>
+      <col style="width: 17%">
+      <col style="width: 60%">
+      <col style="width: 23%">
+    </colgroup>
+    <thead data-hook="admin_specification_categories_index_headers">
+      <th><%= t(:code) %></th>
+      <th><%= t(:description) %></th>
+      <th data-hook="admin_specification_categories_index_header_actions" class="actions"></th>
+    </thead>
+    <tbody class="align-center">
+      <% @specification_categories.each do |specification_category|%>
+        <tr id="<%= spree_dom_id specification_category %>" data-hook="admin_specification_categories_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td><%= specification_category.code %></td>
+          <td><%= specification_category.description %></td>
+          <td data-hook="admin_specification_categories_index_row_actions" class="actions">
+            <%= link_to_edit_url edit_admin_specification_category_url(specification_category), :no_text => true%>
+            <%= link_to_delete specification_category, :url => admin_specification_category_url(specification_category), :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end%>

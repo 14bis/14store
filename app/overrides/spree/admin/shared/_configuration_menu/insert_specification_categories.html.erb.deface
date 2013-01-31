@@ -1,0 +1,5 @@
+<!-- insert_after "code[erb-loud]:contains('t(:general_settings)')" -->
+
+<%= configurations_sidebar_menu_item t(:specifications), admin_specifications_path %>
+
+<%= configurations_sidebar_menu_item t(:specification_categories), admin_specification_categories_path %>
