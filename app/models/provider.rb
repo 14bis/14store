@@ -1,3 +1,5 @@
+require 'uri'
+
 class Provider < ActiveRecord::Base
   # organizational
   attr_accessible :name, :full_name, :code, :website
@@ -7,18 +9,18 @@ class Provider < ActiveRecord::Base
   belongs_to :state, :class_name => "Spree::State" 
   belongs_to :country, :class_name => "Spree::Country"
   
-  # TODO
-  # As long as we are going to use email validation on other parts of the project
-  # Refactor this
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   has_many :products, :class_name => "Spree::Product"
   
   validates :name,  presence: true, length: { maximum: 50 }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
+  validates :phone1, format: { with: VALID_PHONE_REGEX }, :allow_blank => true
+  validates :phone2, format: { with: VALID_PHONE_REGEX }, :allow_blank => true
+  validates :fax, format: { with: VALID_PHONE_REGEX }, :allow_blank => true
+  validates :website, format: { with: URI::regexp }, :allow_blank => true
   
 
 # Another way to validate inserting personalized error message
- 
+
 #  def validate 
 #    errors.add(:email, t("provider.email_invalid")) if (VALID_EMAIL_REGEX.match(self.email))
 #  end

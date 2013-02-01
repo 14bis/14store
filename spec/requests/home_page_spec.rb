@@ -2,12 +2,10 @@ require "spec_helper"
 
 describe "Home page" do
 
-  subject { page }
-
   context "with no products available to show" do
     it "displays the translated message for :no_products_found" do
       visit "/"
-      should have_content( I18n.t('no_products_found') )
+      page.should have_content( I18n.t('no_products_found') )
     end
   end
   
@@ -15,8 +13,19 @@ describe "Home page" do
     it "displays a products list" do
       FactoryGirl.create(:product)
       visit "/"
-      should have_selector('ul#products')
+      page.should have_selector('ul#products')
     end
+    
+    it "displays the provider for each product" do
+      products = [FactoryGirl.create(:product), FactoryGirl.create(:product)]
+      visit "/"
+      products.each do |product|
+        within "#product_#{product.id}" do
+          page.should have_content( product.provider.name )
+        end
+      end
+    end
+    
   end
 
 end
