@@ -1,13 +1,28 @@
+# encoding: UTF-8
+
 namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
+    
+    brazil = Spree::Country.find_by_iso('BR')
+    brazil.states.find_or_create_by_abbr_and_name('AL','Alagoas')
+    brazil.states.find_or_create_by_abbr_and_name('BA','Bahia')
+    brazil.states.find_or_create_by_abbr_and_name('CE','Ceará')
+    brazil.states.find_or_create_by_abbr_and_name('MA','Maranhão')
+    brazil.states.find_or_create_by_abbr_and_name('PB','Paraíba')
+    brazil.states.find_or_create_by_abbr_and_name('PE','Pernambuco')
+    brazil.states.find_or_create_by_abbr_and_name('PI','Piauí')
+    brazil.states.find_or_create_by_abbr_and_name('RN','Rio Grande do Norte')
+    brazil.states.find_or_create_by_abbr_and_name('SE','Sergipe')
+    
+    
     
     [Provider, Spree::Product, Specification, SpecificationCategory].each(&:delete_all)
     
     @provider = Provider.create!(name: Faker::Company.name,
                                  email: Faker::Internet.email)
                      
-    50.times do |n|
+    25.times do |n|
       name  = "Product-#{n+1}"
       price = rand
       available_on = 2.days.ago..Time.now

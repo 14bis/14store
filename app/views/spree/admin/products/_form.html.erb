@@ -22,7 +22,7 @@
 
     <%= f.field_container :description do %>
       <%= f.label :description, t(:description) %>
-      <%= f.text_area :description, {:rows => "#{unless @product.has_variants? then '8' else '2' end}", :class => 'fullwidth'} %>
+      <%= f.text_area :description, {:rows => "#{unless @product.has_variants? then '5' else '2' end}", :class => 'fullwidth'} %>
       <%= f.error_message_on :description %>
     <% end %>
   </div>
@@ -101,8 +101,11 @@
           <%= f.text_field :depth, :size => 4 %>
         </li>
       </ul>
+-->
+
     <% end %>
 
+<!--
 
     <%= f.field_container :shipping_categories do %>
       <%= f.label :shipping_category_id, t(:shipping_categories) %>

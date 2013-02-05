@@ -1,3 +1,42 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+    
+      var options = document.getElementById('provider_state_id').options;
+    
+      var states = new Array();
+      <% for state in @available_states -%>
+        states.push(new Array(<%= state.country_id %>, '<%=h state.name %>', <%= state.id %>));
+      <% end -%>
+
+      function countrySelected() {
+        
+        country_id = $('#provider_country_id').val();
+        
+        //erase the shown text for state
+        $('#s2id_provider_state_id .select2-choice span').text('');
+        
+        //erase all options
+        options.length = 0;
+        
+        //recreate the options
+        $.each( states, function( key, state ) {
+          if (state[0] == country_id) {
+            options[options.length] = new Option(state[1], state[2]);
+          }
+        });
+        
+      }
+      
+      // when the country field changes
+      $("#provider_country_id").change(function() {
+        countrySelected();
+      });
+    });
+  </script>
+<% end %>
+
 <div data-hook="admin_provider_form_fields">
 
   <div class="alpha eight columns">
@@ -91,14 +130,14 @@
   <div class="alpha four columns">
     <%= f.field_container :country do %>
       <%= f.label :country_id, t(:country) %><br />
-      <%= f.collection_select :country_id, Spree::Country.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+      <%= f.collection_select :country_id, @available_countries, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
     <% end %>
   </div>
   
   <div class="four columns">
     <%= f.field_container :state do %>
       <%= f.label :state_id, t(:state) %><br />
-      <%= f.collection_select :state_id, Spree::State.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+      <%= f.collection_select :state_id, @available_states.select{|s| s.country.id == @provider.country.id}, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
     <% end %>
   </div>
   

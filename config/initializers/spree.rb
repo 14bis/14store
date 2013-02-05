@@ -9,6 +9,7 @@ Spree.config do |config|
   # Example:
   # Uncomment to override the default site name.
   # config.site_name = "Spree Demo Site"
+  config.track_inventory_levels = false
 end
 
 Spree.user_class = "Spree::User"
