@@ -1,8 +1,0 @@
-<!-- insert_before 'code[erb-loud]:contains("f.field_container :name")'  -->
-
-<div class="field">
-  <%= f.label :provider, t(:provider) %>
-  <div class="fullwidth title">
-    <%= "#{@product.provider.name}" %>
-  </div>
-</div>

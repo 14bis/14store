@@ -4,9 +4,25 @@ describe Provider do
   before { @provider = FactoryGirl.build(:provider) }
   
   subject { @provider }
-  
-  it { should respond_to(:name) }
+
+  # Contact data
   it { should respond_to(:email) }
+  it { should respond_to(:address1) }
+  it { should respond_to(:address2) }
+  it { should respond_to(:city) }
+  it { should respond_to(:zipcode) }
+  it { should respond_to(:phone1) }
+  it { should respond_to(:phone2) }
+  it { should respond_to(:fax) }
+  it { should respond_to(:state) }
+  it { should respond_to(:country) }
+  
+  # Organizational
+  it { should respond_to(:name) }
+  it { should respond_to(:full_name) }
+  it { should respond_to(:code) } # CNPJ, CPF, etc...
+  it { should respond_to(:website) }
+  
   
   describe "during validation" do
     it "has a valid factory" do

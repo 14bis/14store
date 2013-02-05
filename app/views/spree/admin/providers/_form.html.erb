@@ -1,17 +1,151 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+    
+      var options = document.getElementById('provider_state_id').options;
+    
+      var states = new Array();
+      <% for state in @available_states -%>
+        states.push(new Array(<%= state.country_id %>, '<%=h state.name %>', <%= state.id %>));
+      <% end -%>
+
+      function countrySelected() {
+        
+        country_id = $('#provider_country_id').val();
+        
+        //erase the shown text for state
+        $('#s2id_provider_state_id .select2-choice span').text('');
+        
+        //erase all options
+        options.length = 0;
+        
+        //recreate the options
+        $.each( states, function( key, state ) {
+          if (state[0] == country_id) {
+            options[options.length] = new Option(state[1], state[2]);
+          }
+        });
+        
+      }
+      
+      // when the country field changes
+      $("#provider_country_id").change(function() {
+        countrySelected();
+      });
+    });
+  </script>
+<% end %>
+
 <div data-hook="admin_provider_form_fields">
-  <div class="alpha four columns">
+
+  <div class="alpha eight columns">
     <%= f.field_container :name do %>
-      <%= f.label :name, t(:name) %><br />
+    <%= f.label :name, raw(t(:name) + content_tag(:span, ' *', :class => 'required')) %>
       <%= f.text_field :name, :class => 'fullwidth' %>
       <%= error_message_on :provider, :name %>
+    <% end %>
+  </div>
+  
+  <div class="eight columns omega">
+    <%= f.field_container :full_name do %>
+      <%= f.label :full_name, t(:full_name) %><br />
+      <%= f.text_field :full_name, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :full_name %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+  
+  <div class="alpha eight columns">
+    <%= f.field_container :code do %>
+      <%= f.label :code, t(:code) %><br />
+      <%= f.text_field :code, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :code %>
     <% end %>
   </div>
 
   <div class="four columns">
     <%= f.field_container :email do %>
-      <%= f.label :email, t(:email) %><br />
+      <%= f.label :email, raw(t(:email) + content_tag(:span, ' *', :class => 'required')) %>
       <%= f.text_field :email, :class => 'fullwidth' %>
       <%= error_message_on :provider, :email %>
+    <% end %>
+  </div>
+  
+  <div class="four columns omega">
+    <%= f.field_container :website do %>
+      <%= f.label :website, t(:website) %><br />
+      <%= f.text_field :website, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :website %>
+    <% end %>
+  </div>
+
+  <div class="clear"></div>
+  
+  <div class="alpha four columns">
+    <%= f.field_container :phone1 do %>
+      <%= f.label :phone1, t(:phone1) %><br />
+      <%= f.text_field :phone1, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :phone1 %>
+    <% end %>
+  </div>
+  
+  <div class="four columns">
+    <%= f.field_container :phone2 do %>
+      <%= f.label :phone2, t(:phone2) %><br />
+      <%= f.text_field :phone2, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :phone2 %>
+    <% end %>
+  </div>
+  
+  <div class="four columns">
+    <%= f.field_container :fax do %>
+      <%= f.label :fax, t(:fax) %><br />
+      <%= f.text_field :fax, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :fax %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+  
+  <div class="alpha eight columns">
+    <%= f.field_container :address1 do %>
+      <%= f.label :address1, t(:address1) %><br />
+      <%= f.text_field :address1, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :address1 %>
+    <% end %>
+  </div>
+  
+  <div class="eight columns omega">
+    <%= f.field_container :address2 do %>
+      <%= f.label :address2, t(:address2) %><br />
+      <%= f.text_field :address2, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :address2 %>
+    <% end %>
+  </div>
+  
+  <div class="clear"></div>
+  
+  <div class="alpha four columns">
+    <%= f.field_container :country do %>
+      <%= f.label :country_id, t(:country) %><br />
+      <%= f.collection_select :country_id, @available_countries, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+    <% end %>
+  </div>
+  
+  <div class="four columns">
+    <%= f.field_container :state do %>
+      <%= f.label :state_id, t(:state) %><br />
+      <%= f.collection_select :state_id, @available_states.select{|s| s.country.id == @provider.country.id}, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+    <% end %>
+  </div>
+  
+  <div class="four columns omega">
+    <%= f.field_container :city do %>
+      <%= f.label :city, t(:city) %><br />
+      <%= f.text_field :city, :class => 'fullwidth' %>
+      <%= error_message_on :provider, :city %>
     <% end %>
   </div>
   

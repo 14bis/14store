@@ -7,13 +7,16 @@
 <%= form_for @product, :url => admin_product_url(@product), :method => :put do |f| %>
   <fieldset class="no-border-top">
   
-    <%= f.field_container :requirements do %>
-      <%= f.label :specification_ids, t(:requirements) %>
-      <%= f.select :specification_ids, Specification.all.map {|s| [s.description, s.id]}, {}, :class => "select2", :multiple => true %>
+    <% @specification_categories.each do |sc| %>
+    
+      <%= f.field_container :requirements do %>
+        <%= f.label :specification_ids, t(sc.description) %>
+        <%= f.select :specification_ids, Specification.where("specification_category_id = ?", [sc.id]).map {|s| [s.description, s.id]}, {}, :class => "select2 fullwidth", :multiple => true %>
+      <% end %>
+      
     <% end %>
     
     <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
-
-    <%= hidden_field_tag 'clear_product_properties', 'true' %>
+    
   </fieldset>
 <% end %>

@@ -8,20 +8,11 @@
   </li>
 <% end %>
 
-<div data-hook="admin_provider_new_form_header">
   <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @provider } %>
-</div>
 
-<div data-hook="admin_provider_new_form">
-  <%= form_for @provider, :url => admin_providers_path do |f| %>
-    <fieldset class="no-border-top">
-      <%= render :partial => 'form', :locals => { :f => f } %>
-
-      <div class="clear"></div>
-
-      <div data-hook="admin_provider_new_form_buttons">
-        <%= render :partial => 'spree/admin/shared/new_resource_links' %>
-      </div>
-    </fieldset>
-  <% end %>
-</div>
+<%= form_for @provider, :url => admin_providers_path do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= render :partial => 'spree/admin/shared/new_resource_links' %>
+  </fieldset>
+<% end %>
