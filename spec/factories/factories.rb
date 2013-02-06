@@ -7,30 +7,34 @@ FactoryGirl.define do
     password              "password"
     password_confirmation "password"
     ignore do
-      admin false
+      role "user"
     end
     factory :admin do
       ignore do
-        admin true
+        role "admin"
+      end
+    end
+    factory :user_provider do
+      ignore do
+        role "provider"
       end
     end
     
     after(:create) do |user, evaluator|
       # Somehow, the admin role is added by default
-      if evaluator.admin
-        user.spree_roles << FactoryGirl.create(:role_user)
+      if evaluator.role == "admin"
+        user.spree_roles << FactoryGirl.create(:role)
+      elsif evaluator.role == "provider"
+        user.spree_roles = [FactoryGirl.create(:role, :name => 'provider')]
       else
-        user.spree_roles = [FactoryGirl.create(:role_user)]
+        user.spree_roles = [FactoryGirl.create(:role)]
       end
     end
   end
   
-  factory :role_user, class: Spree::Role do
+  factory :role, class: Spree::Role do
     name "user"
   end
-#  factory :role_admin, class: Spree::Role do
-#    name "admin"
-#  end
 
   factory :provider do
     name     { Faker::Company.name }

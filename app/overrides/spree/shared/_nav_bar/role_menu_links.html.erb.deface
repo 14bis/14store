@@ -1,0 +1,9 @@
+<!-- insert_before "li#search-bar" -->
+
+<% if spree_current_user && spree_current_user.has_spree_role?(:admin) %>
+ <li> <%= link_to t(:administration), admin_path %> </li>
+<% end %>
+
+<% if spree_current_user && spree_current_user.has_spree_role?(:provider) %>
+ <li> <%= link_to t(:management), management_path %> </li>
+<% end %>
