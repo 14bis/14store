@@ -2,7 +2,11 @@ Store14::Application.routes.draw do
 
   mount Spree::Core::Engine, :at => '/'
 
-
+    namespace :management do
+      resources :products
+    end
+    
+    match '/management', :to => 'management/products#index'
 
 
   # This line mounts Spree's routes at the root of your application.
@@ -71,6 +75,7 @@ Store14::Application.routes.draw do
 end
 
 Spree::Core::Engine.routes.prepend do
+
     namespace :admin do
       resources :providers
       resources :specification_categories

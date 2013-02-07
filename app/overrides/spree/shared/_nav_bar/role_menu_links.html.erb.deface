@@ -5,5 +5,5 @@
 <% end %>
 
 <% if spree_current_user && spree_current_user.has_spree_role?(:provider) %>
- <li> <%= link_to t(:management), management_path %> </li>
+ <li> <%= link_to t(:management), main_app.management_path %> </li>
 <% end %>
