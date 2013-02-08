@@ -1,0 +1,13 @@
+<!-- insert_before "code[erb-loud]:contains('f.field_container :name')" -->
+<div class="fullwidth">
+  <% 
+    trial = { t('None') => 0 }
+    12.times do |i|
+      trial[pluralize(i + 1, 'Week')] = (i + 1) * 7
+    end
+  %>
+  <%= f.field_container :trial_period do %>
+    <%= f.label :trial_period, t(:trial_period) %>
+    <%= f.select :trial_period, trial, {}, {:class => 'select2 fullwidth'} %>
+  <% end %>
+</div>

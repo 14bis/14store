@@ -1,5 +1,5 @@
 Spree::Product.class_eval do
-  attr_accessible :provider_id, :specification_ids
+  attr_accessible :provider_id, :specification_ids, :trial_period
   
   belongs_to :provider
   has_many :requirements
