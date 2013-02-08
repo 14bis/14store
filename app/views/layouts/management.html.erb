@@ -1,0 +1,27 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="en"><!--<![endif]-->
+  <head>
+  
+    <%= yield :head %>
+  </head>
+  
+  <body>
+  
+    <nav id="admin-menu" data-hook>
+      <div class="container">
+        <div class="sixteen columns main-menu-wrapper">
+          <ul class="inline-menu fullwidth-menu">
+            <%= render :partial => 'management/shared/tabs' %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <%= yield %>
+    
+  </body>
+</html>

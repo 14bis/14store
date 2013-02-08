@@ -1,5 +1,7 @@
 module Management
   class BaseController < ApplicationController
+    layout '/layouts/management'
+    
     before_filter :authorize_management
     
     def current_ability
