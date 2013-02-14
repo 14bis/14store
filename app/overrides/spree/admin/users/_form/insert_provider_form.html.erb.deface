@@ -1,0 +1,22 @@
+<!-- insert_after "div.row" -->
+
+<div id="user_provider_form">
+  <%= f.fields_for :provider do |p_form| %>
+    <%= render :partial => 'spree/admin/users/provider_form', :locals => { :f => p_form } %>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  if( $('#user_spree_role_provider').is(':checked')) {
+      $("#user_provider_form").show();
+  } else {
+      $("#user_provider_form").hide();
+  }
+  $('#user_spree_role_provider').click(function() {
+      if( $(this).is(':checked')) {
+          $("#user_provider_form").show();
+      } else {
+          $("#user_provider_form").hide();
+      }
+  });
+</script>

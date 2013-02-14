@@ -49,7 +49,6 @@ describe "Management namespace" do
       visit management_path 
     end
     it "should have a link to products" do
-      save_and_open_page
       page.find_link("Products")['/management/products']
     end
   

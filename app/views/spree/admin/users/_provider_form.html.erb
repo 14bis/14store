@@ -1,0 +1,27 @@
+<div class="alpha five columns">
+  <%= f.label :name, raw(t(:name) + content_tag(:span, ' *', :class => 'required')) %>
+    <%= f.text_field :name, :class => 'fullwidth' %>
+    <%= error_message_on :provider, :name %>
+</div>
+
+<div class="five columns omega">
+    <%= f.label :full_name, t(:full_name) %><br />
+    <%= f.text_field :full_name, :class => 'fullwidth' %>
+    <%= error_message_on :provider, :full_name %>
+</div>
+
+<div class="clear"></div>
+
+<div class="alpha five columns">
+    <%= f.label :code, t(:code) %><br />
+    <%= f.text_field :code, :class => 'fullwidth' %>
+    <%= error_message_on :provider, :code %>
+</div>
+
+<div class="five columns omega">
+    <%= f.label :email, raw(t(:email) + content_tag(:span, ' *', :class => 'required')) %>
+    <%= f.text_field :email, :class => 'fullwidth' %>
+    <%= error_message_on :provider, :email %>
+</div>
+
+<div class="clear"></div>

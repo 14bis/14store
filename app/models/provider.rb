@@ -8,9 +8,11 @@ class Provider < ActiveRecord::Base
     :address1, :address2, :city, :zipcode, :state_id, :country_id
   belongs_to :state, :class_name => "Spree::State" 
   belongs_to :country, :class_name => "Spree::Country"
+  belongs_to :user, :class_name => "Spree::User"
   
   has_many :products, :class_name => "Spree::Product"
   
+#  validates :user, presence: true
   validates :name,  presence: true, length: { maximum: 50 }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :phone1, format: { with: VALID_PHONE_REGEX }, :allow_blank => true

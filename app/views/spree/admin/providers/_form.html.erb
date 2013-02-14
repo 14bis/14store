@@ -134,10 +134,11 @@
     <% end %>
   </div>
   
+  <% provider_country_id = @provider.country ? @provider.country.id : 0 %>
   <div class="four columns">
     <%= f.field_container :state do %>
       <%= f.label :state_id, t(:state) %><br />
-      <%= f.collection_select :state_id, @available_states.select{|s| s.country.id == @provider.country.id}, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+      <%= f.collection_select :state_id, @available_states.select{|s| s.country.id == provider_country_id }, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
     <% end %>
   </div>
   

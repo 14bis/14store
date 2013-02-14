@@ -10,7 +10,7 @@ describe "Management products" do
   describe "index" do
     
     describe "when has no owner products to show" do
-      it { page.should have_content "No Producst Found" }
+      it { page.should have_content "No products found" }
     end
     
     describe "when has owner products to show" do
