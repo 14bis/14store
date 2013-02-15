@@ -22,18 +22,14 @@ FactoryGirl.define do
     
     after(:create) do |user, evaluator|
       if evaluator.role == "admin"
-        # Do nothing: somehow, the admin role is added by default
+         user.spree_roles = [ROLE_ADMIN]
       elsif evaluator.role == "provider"
         user.provider = FactoryGirl.create(:provider)
-        user.spree_roles = [FactoryGirl.create(:role, :name => 'provider')]
+        user.spree_roles = [ROLE_PROVIDER]
       else
-        user.spree_roles = [FactoryGirl.create(:role)]
+        user.spree_roles = [ROLE_USER]
       end
     end
-  end
-  
-  factory :role, class: Spree::Role do
-    name "user"
   end
 
   factory :provider do

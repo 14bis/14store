@@ -1,0 +1,23 @@
+<% content_for :page_title do %>
+  <%= t(:new_product) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to t(:back_to_products_list), management_products_path, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @product } %>
+  
+<%= form_for [:management, @product], :url => management_products_path do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <div class="form-buttons filter-actions actions" data-hook="buttons">
+      <%= button t('actions.create'), 'icon-ok' %>
+      <span class="or"><%= t(:or) %></span>
+      <%= link_to_with_icon 'icon-remove', t('actions.cancel'), management_products_path, :class => 'button' %>
+    </div>
+    
+  </fieldset>
+<% end %>
