@@ -6,8 +6,10 @@ class ManagementAbility
 
     if user.respond_to?(:has_spree_role?) && user.has_spree_role?('provider')
       can :index, Spree::Product
-      can :read, Spree::Product
       can :create, Spree::Product
+      can [:read, :update, :destroy], Spree::Product do |product|
+        product.provider.user == spree_current_user
+      end
     else
       
     end

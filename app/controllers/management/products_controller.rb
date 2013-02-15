@@ -1,6 +1,8 @@
 module Management
   class ProductsController < BaseController
     before_filter :load_data, :except => :index
+    respond_to :html
+    respond_to :js, :only => [:destroy]
 
     def model_class
       Spree::Product
@@ -10,10 +12,18 @@ module Management
       @products = spree_current_user.provider.products
     end
     
+    def show
+      session[:return_to] ||= request.referer
+      redirect_to( :action => :edit )
+    end
+    
     def new
       @product = spree_current_user.provider.products.build()
     end
     
+    def edit
+      @product = Spree::Product.find_by_permalink(params[:id])
+    end
     
     def create
       @product = spree_current_user.provider.products.build()
@@ -23,6 +33,31 @@ module Management
         redirect_to management_products_path
       else
         render :new
+      end
+    end
+    
+    def update
+      @product = Spree::Product.find_by_permalink(params[:id])
+      if @product.update_attributes(params[:product])
+        flash[:success] = flash_message_for(@product, :successfully_updated)
+        redirect_to management_products_path
+      else
+        render :edit
+      end
+    end
+    
+    def destroy
+      @product = Spree::Product.find_by_permalink(params[:id])
+      if @product.destroy
+        flash[:success] = flash_message_for(@product, :successfully_removed)
+        respond_with(@product) do |format|
+          format.html { redirect_to management_products_path }
+          format.js { render :partial => "spree/admin/shared/destroy" }
+        end
+      else
+        respond_with(@product) do |format|
+          format.html { redirect_to management_products_path }
+        end
       end
     end
     
