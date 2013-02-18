@@ -11,29 +11,27 @@ describe "Management namespace" do
       user_provider.destroy
     end
     
-    before do
-      visit management_path 
-    end
-    
     describe "when attempting to visit the protect area" do
-      
       describe "after login as a user that has the spree_role :provider" do
         before do
-          fill_in "Email", with: user_provider.email
-          fill_in "Password", with: user_provider.password
-          click_button "Login"
+          stub_login! user_provider
+          visit management_path
         end
+        
         it "should render the desired protected page" do
           # page.should have_selector('title', text: 'Products')
           page.should have_content('Products')
+        end
+        it "should allow the user to logout" do
+          click_link "Logout"
+          page.should have_content "Login"
         end
       end
       
       describe "after login as a user that doesn't have the spree_role :provider" do
         before do
-          fill_in "Email", with: user.email
-          fill_in "Password", with: user.password
-          click_button "Login"
+          stub_login! user
+          visit management_path
         end
         it "should render the home page" do
           page.should have_selector('li#home-link')
