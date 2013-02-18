@@ -20,3 +20,7 @@ def stub_authorize!
     controller.should_receive(:authorize!).any_number_of_times.and_return(true)
   end
 end
+
+def stub_login!(user)
+  Management::BaseController.any_instance.stub(:spree_current_user).and_return(user)
+end

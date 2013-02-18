@@ -1,15 +1,16 @@
 module Management
   class ProductsController < BaseController
+    load_and_authorize_resource :find_by => :permalink, :class => "Spree::Product"
     before_filter :load_data, :except => :index
     respond_to :html
     respond_to :js, :only => [:destroy]
 
-    def model_class
-      Spree::Product
-    end
+#    def model_class
+#      Spree::Product
+#    end
     
     def index
-      @products = spree_current_user.provider.products
+      # @products = spree_current_user.provider.products
     end
     
     def show
@@ -18,15 +19,14 @@ module Management
     end
     
     def new
-      @product = spree_current_user.provider.products.build()
+      # @product = spree_current_user.provider.products.build()
     end
     
     def edit
-      @product = Spree::Product.find_by_permalink(params[:id])
+      # @product = Spree::Product.find_by_permalink(params[:id])
     end
     
     def create
-      @product = spree_current_user.provider.products.build()
       @product.attributes = params[:product]
       if @product.save
         flash[:success] = flash_message_for(@product, :successfully_updated)
@@ -37,7 +37,6 @@ module Management
     end
     
     def update
-      @product = Spree::Product.find_by_permalink(params[:id])
       if @product.update_attributes(params[:product])
         flash[:success] = flash_message_for(@product, :successfully_updated)
         redirect_to management_products_path
@@ -47,7 +46,6 @@ module Management
     end
     
     def destroy
-      @product = Spree::Product.find_by_permalink(params[:id])
       if @product.destroy
         flash[:success] = flash_message_for(@product, :successfully_removed)
         respond_with(@product) do |format|

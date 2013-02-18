@@ -8,6 +8,7 @@ describe "Providers" do
   describe "edit" do
     
     let(:provider) { FactoryGirl.create(:provider) }
+    after(:all) { provider.destroy }
     before do
       login user
       visit spree.edit_admin_provider_path(provider)
@@ -52,7 +53,6 @@ describe "Providers" do
       
     end
   
-    after(:all) { provider.destroy }
   end
 
  

@@ -3,17 +3,17 @@ module Management
     helper 'spree/admin/base'
     layout '/layouts/management'
     
-    before_filter :authorize_management
+    # before_filter :authorize_management
     
     def current_ability
       @current_ability ||= ManagementAbility.new(spree_current_user)
     end
   
     protected
-      def authorize_management
-        record = model_class rescue Object
-        authorize! params[:action].to_sym, record
-      end
+#      def authorize_management
+#        record = model_class rescue Object
+#        authorize! params[:action].to_sym, record
+#      end
       
       def flash_message_for(object, event_sym)
         resource_desc = object.class.model_name.human
