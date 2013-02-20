@@ -9,11 +9,16 @@ Spree::Product.class_eval do
 
   def have_trial_period?
     if self.trial_period > 0
-      return true
+      true
     else
-      return false
+      false
     end
+  end
 
+  def trial_short_message
+    if self.trial_period > 0
+      "Available for trial"
+    end
   end
 
 end

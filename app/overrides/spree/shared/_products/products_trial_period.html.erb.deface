@@ -1,0 +1,4 @@
+<!-- insert_after "code[erb-loud]:contains('product.name')" -->
+<% if product.have_trial_period? %>
+  <%= product.trial_short_message %>
+<% end %>

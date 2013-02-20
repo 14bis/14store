@@ -8,14 +8,14 @@ describe "Home page" do
       page.should have_content( I18n.t('no_products_found') )
     end
   end
-  
+
   context "with products available to show" do
     it "displays a products list" do
       FactoryGirl.create(:product)
       visit "/"
       page.should have_selector('ul#products')
     end
-    
+
     it "displays the provider for each product" do
       products = [FactoryGirl.create(:product), FactoryGirl.create(:product)]
       visit "/"
@@ -25,7 +25,17 @@ describe "Home page" do
         end
       end
     end
-    
+
+    it "displays the trial product message if available" do
+      product = FactoryGirl.create(:product)
+      visit "/"
+      within "#product_#{product.id}" do
+        if product.have_trial_period?
+          page.should have_content( product.trial_short_message )
+        end
+      end
+    end
+
   end
 
 end

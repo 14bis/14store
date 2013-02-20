@@ -10,17 +10,8 @@ Spree::Order.class_eval do
 
   # If true, causes the payment step to happen during the checkout process
   def payment_required?
-    count = 0
-    self.products.each do | product |
-      if product.have_trial_period?
-        count = count + 1
-      end
-    end
-    if count  == self.products.count
-      return false
-    else
-      return true
-    end
+    self.products.each {| product | return true if !product.have_trial_period?}
+    false
   end
 
   # If true, causes the confirmation step to happen during the checkout process
