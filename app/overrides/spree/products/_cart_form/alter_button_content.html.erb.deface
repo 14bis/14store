@@ -1,0 +1,5 @@
+<!-- replace_contents "code[erb-loud]:contains('add-to-cart-button')" 
+     closing_selector "code[erb-silent]:contains('end')"
+     original 'Add To Cart' -->
+
+<%= t(:purchase) %>
