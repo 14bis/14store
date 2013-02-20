@@ -21,4 +21,12 @@ Spree::Product.class_eval do
     end
   end
 
+  def trial_message
+    if self.trial_period == 7
+      "Available to test for 1 week."
+    elsif self.trial_period > 7
+      "Available to test for #{self.trial_period / 7} weeks."
+    end
+  end
+
 end
