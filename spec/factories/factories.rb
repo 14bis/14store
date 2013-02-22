@@ -43,7 +43,7 @@ FactoryGirl.define do
   factory :product, class: Spree::Product do
     name          "Product 1"
     price         { rand }
-    trial_period { rand( 85 ) }
+    trial_period  14
     available_on  { 2.days.ago..Time.now }
     provider
   end

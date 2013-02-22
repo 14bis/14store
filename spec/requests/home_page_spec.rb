@@ -26,12 +26,12 @@ describe "Home page" do
       end
     end
 
-    it "displays the trial product message if available" do
+    it "must contain the trial class if a product have trial period" do
       product = FactoryGirl.create(:product)
       visit "/"
-      within "#product_#{product.id}" do
+      within "#products" do
         if product.have_trial_period?
-          page.should have_content( product.trial_short_message )
+          page.should have_selector( "li.trial" )
         end
       end
     end

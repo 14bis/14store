@@ -10,11 +10,18 @@ describe "Checkout proccess" do
       click_link product.name
       click_button "add-to-cart-button"
       click_button "Checkout"
-      if product.trial_period > 0
-        click_button "Place Order"
-      end
+      click_button "Place Order"
       ActionMailer::Base.deliveries.should_not be_empty
       page.should have_content("Order")
+    end
+
+    it "displays trial period message if available" do
+      product = FactoryGirl.create(:product)
+      visit "/"
+      click_link product.name
+      click_button "add-to-cart-button"
+      click_button "Checkout"
+      page.should have_content( product.trial_full_message )
     end
   end
 
