@@ -18,21 +18,15 @@ Spree::Product.class_eval do
     end
   end
 
-  def trial_short_message
-    if self.have_trial_period?
-      "Available for trial"
-    end
-  end
-
   def trial_message
     if self.have_trial_period?
-      "Available to test for #{pluralize( self.trial_period / 7, 'week' )} ."
+      "Available to free use for #{pluralize( self.trial_period / 7, 'week' )} ."
     end
   end
 
   def trial_full_message
     if self.have_trial_period?
-      "The #{self.name} is available to test for #{pluralize( self.trial_period / 7, 'week' )} ."
+      "The #{self.name} is available to free use for #{pluralize( self.trial_period / 7, 'week' )} ."
     end
   end
 
