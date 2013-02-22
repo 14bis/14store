@@ -3,8 +3,13 @@ require "spec_helper"
 describe "Management products" do
 
   before(:all) { @user_provider = FactoryGirl.create(:user_provider) }
-  after(:all) { @user_provider.destroy }
+  after(:all) do 
+    @user_provider.provider.destroy 
+    @user_provider.destroy 
+  end
   before { stub_login! @user_provider }
+  let(:new_name) { "New product name" }
+  let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider) }
       
   describe "index" do
     describe "when has no owner products to show" do
@@ -28,16 +33,18 @@ describe "Management products" do
         page.should have_content "Test2"
         page.should_not have_content "Test3"
       end
+      it "displays a button to request publication" do
+        page.should have_content 'Request Publication'
+      end
     end
   end
     
-  
-  let(:new_name) { "New product name" }
-  let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider) }
-  after(:all) { my_product.destroy }  
   describe "edit" do
     before do
       visit edit_management_product_path my_product
+    end
+    describe "page" do
+      it { page.should_not have_selector "#product_available_on" }
     end
     context "with valid attributes" do
       it "updates the name" do 

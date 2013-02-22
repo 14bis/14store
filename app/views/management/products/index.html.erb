@@ -29,6 +29,8 @@
               <%= link_to_edit_url edit_management_product_url(product), :no_text => true %>
               &nbsp;
               <%= link_to_delete product, :url => management_product_url(product), :no_text => true %>
+
+              <%= link_to t('request_publication'), management_product_path(product), :method=> :put %>
           </td>
         </tr>
       <% end %>

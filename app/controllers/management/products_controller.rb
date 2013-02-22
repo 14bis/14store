@@ -27,6 +27,7 @@ module Management
     end
     
     def create
+      params[:product].delete :available_on
       @product.attributes = params[:product]
       if @product.save
         flash[:success] = flash_message_for(@product, :successfully_updated)
@@ -37,6 +38,7 @@ module Management
     end
     
     def update
+      params[:product][:available_on] = @product.available_on
       if @product.update_attributes(params[:product])
         flash[:success] = flash_message_for(@product, :successfully_updated)
         redirect_to management_products_path
