@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130208170922) do
 
+
   create_table "providers", :force => true do |t|
     t.string   "name"
     t.string   "email"
@@ -366,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20130208170922) do
     t.datetime "updated_at",                              :null => false
     t.boolean  "on_demand",            :default => false
     t.integer  "provider_id"
+    t.integer  "trial_period"
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"
