@@ -84,13 +84,7 @@ Spree::Core::Engine.routes.prepend do
       resources :specifications
       resources :products do
         resources :requirements
-  #       do
-  #        member do
-  #          get 'requirements/', controller: 'requirements', action: 'edit'
-  #          get 'requirements/edit', controller: 'requirements', action: 'edit'
-  #          put 'requirements/update', controller: 'requirements'
-  #        end
-  #     # end
+        resources :publication_requests, :only => [:index, :update]
       end
   end
 end
