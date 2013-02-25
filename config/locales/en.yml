@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  submited_for_aproval: "%{resource} has been submitted for approval!"
+  approved_at: "Approved at %{resource}"
+  submited_at: "Submited at %{resource}"
+  rejected_at: "Rejected at %{resource}"

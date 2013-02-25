@@ -12,12 +12,16 @@
 
   <table class="index" id="listing_products">
      <colgroup>
-      <col style="width: 85%">
-      <col style="width: 15%;">
+      <col style="width: 50%;">
+      <col style="width: 20%;">
+      <col style="width: 20%;">
+      <col style="width: 10%;">
     </colgroup>
     <thead>
       <tr>
         <th><%= t(:name) %></th>
+        <th><%= t(:price) %></th>
+        <th><%= t(:status) %></th>
         <th class="actions"></th>
       </tr>
     </thead>
@@ -25,12 +29,26 @@
       <% @products.each do |product| %>
         <tr id="<%= dom_id product %>">
           <td><%= product.name %></td>
+          <td><%= product.price_in(current_currency).display_price %></td>
+          <td>
+            <% case product.status %>
+            <% when PRODUCT_STATUS[:approved] %>
+              <%= t(:approved_at, :resource => (l product.available_on.to_date)) %>
+            <% when PRODUCT_STATUS[:submited_for_approval] %>
+              <%= t(:submited_at, :resource => (l product.approval_request.updated_at.to_date)) %>
+              <%= link_to t('cancel'), management_product_publication_request_path(product, product.approval_request), :method=> :put  %>
+            <% when PRODUCT_STATUS[:rejected] %>
+              <%= t(:rejected_at, :resource => (l product.approval_request.updated_at.to_date)) %>
+              <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
+            <% when PRODUCT_STATUS[:not_submited_for_approval] %>
+              <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
+            <% end %>
+          </td>
           <td class="actions">
               <%= link_to_edit_url edit_management_product_url(product), :no_text => true %>
               &nbsp;
               <%= link_to_delete product, :url => management_product_url(product), :no_text => true %>
 
-              <%= link_to t('request_publication'), management_product_path(product), :method=> :put %>
           </td>
         </tr>
       <% end %>
