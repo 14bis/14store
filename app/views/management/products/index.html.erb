@@ -32,15 +32,15 @@
           <td><%= product.price_in(current_currency).display_price %></td>
           <td>
             <% case product.status %>
-            <% when PRODUCT_STATUS[:approved] %>
+            <% when Spree::Product::APPROVED %>
               <%= t(:approved_at, :resource => (l product.available_on.to_date)) %>
-            <% when PRODUCT_STATUS[:submited_for_approval] %>
+            <% when Spree::Product::SUBMITTED %>
               <%= t(:submited_at, :resource => (l product.approval_request.updated_at.to_date)) %>
               <%= link_to t('cancel'), management_product_publication_request_path(product, product.approval_request), :method=> :put  %>
-            <% when PRODUCT_STATUS[:rejected] %>
+            <% when Spree::Product::REJECTED %>
               <%= t(:rejected_at, :resource => (l product.approval_request.updated_at.to_date)) %>
               <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
-            <% when PRODUCT_STATUS[:not_submited_for_approval] %>
+            <% when Spree::Product::NOT_SUBMITTED %>
               <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
             <% end %>
           </td>

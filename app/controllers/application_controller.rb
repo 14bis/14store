@@ -14,5 +14,11 @@ class ApplicationController < ActionController::Base
       redirect_to spree_login_path
     end
   end
+
+  def save_each_within_transaction objects
+    ActiveRecord::Base.transaction do
+      objects.each(&:save!)
+    end
+  end
   
 end

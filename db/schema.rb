@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222184751) do
+ActiveRecord::Schema.define(:version => 20130226173533) do
 
   create_table "providers", :force => true do |t|
     t.string   "name"
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(:version => 20130222184751) do
 
   create_table "publication_requests", :force => true do |t|
     t.integer  "product_id"
-    t.integer  "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "status",     :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "requirements", :force => true do |t|
@@ -373,6 +373,7 @@ ActiveRecord::Schema.define(:version => 20130222184751) do
     t.datetime "updated_at",                              :null => false
     t.boolean  "on_demand",            :default => false
     t.integer  "provider_id"
+    t.integer  "status",               :default => 0
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"

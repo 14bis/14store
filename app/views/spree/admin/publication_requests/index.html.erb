@@ -25,10 +25,11 @@
         <tr id="<%= spree_dom_id publication_request %>" class="<%= cycle('odd', 'even')%>">
           <td><%= l publication_request.created_at.to_date %></td>
           <td>
-          	<% if publication_request.open? %>
+            <% case publication_request.status %>
+          	<% when PublicationRequest::OPEN %>
           	  <%= link_to t('accept'), admin_product_publication_request_path(@product, publication_request, :accept => true), :method=> :put  %> &nbsp/&nbsp
           	  <%= link_to t('reject'), admin_product_publication_request_path(@product, publication_request, :reject => true), :method=> :put %>
-          	<% elsif publication_request.canceled? %>
+          	<% when PublicationRequest::CANCELED %>
           		<%= t(:canceled_at, :resource => (l publication_request.updated_at.to_date)) %>
           	<% else #closed %>
           		<%= t(:closed_at, :resource => (l publication_request.updated_at.to_date)) %>

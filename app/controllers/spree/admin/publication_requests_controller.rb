@@ -9,18 +9,16 @@ module Spree
       end
 
       def update
-        ActiveRecord::Base.transaction do
-          if params[:accept].present?
-            @product.available_on = Time.now
-            @product.save
-          end
-          @publication_request.close
-          @publication_request.save
+        if params[:accept].present?
+          @product.status = Spree::Product::APPROVED
+        else
+          @product.status = Spree::Product::REJECTED
         end
+        @publication_request.status = PublicationRequest::CLOSED
+        save_each_within_transaction [ @product, @publication_request ] 
         redirect_to admin_product_publication_requests_path
       end
 
     end
-    
   end
 end
