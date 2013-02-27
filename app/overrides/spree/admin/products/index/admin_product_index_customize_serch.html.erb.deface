@@ -1,0 +1,15 @@
+<!-- insert_bottom "[data-hook='admin_products_index_search']" -->
+
+<div class="alpha nine columns">
+  <div class="field">
+    <%= f.label :provider_id_eq, t(:provider) %>
+    <%= f.collection_select :provider_id_eq, Provider.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+  </div>
+</div>
+
+<div class="seven columns omega">
+  <div class="field">
+    <%= f.label :status_eq, t(:status) %>
+    <%= f.collection_select :status_eq, Spree::Product::STATUSES, :first, :last, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+  </div>
+</div>
