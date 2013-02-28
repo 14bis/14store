@@ -42,10 +42,12 @@ namespace :db do
       price = rand
       available_on = 2.days.ago..Time.now
       provider_id = @user_provider.provider.id
-      Spree::Product.create!(name: name,
+      p = Spree::Product.new(name: name,
                              price: price,
                              available_on: available_on,
                              provider_id: provider_id)
+      p.status = Spree::Product::APPROVED
+      p.save!
     end
     
   end

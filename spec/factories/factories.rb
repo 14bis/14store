@@ -44,6 +44,7 @@ FactoryGirl.define do
     name          "Product 1"
     price         { rand }
     available_on  { 2.days.ago..Time.now }
+    status        Spree::Product::APPROVED
     provider
   end
   

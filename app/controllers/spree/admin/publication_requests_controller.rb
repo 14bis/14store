@@ -11,6 +11,7 @@ module Spree
       def update
         if params[:accept].present?
           @product.status = Spree::Product::APPROVED
+          @product.available_on = Time.now
         else
           @product.status = Spree::Product::REJECTED
         end

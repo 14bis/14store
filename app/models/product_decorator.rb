@@ -16,7 +16,7 @@ Spree::Product.class_eval do
   def status_sym
     Spree::Product::STATUSES[status]
   end
-
+  
   attr_accessible :provider_id, :specification_ids
   
   belongs_to :provider
@@ -26,8 +26,17 @@ Spree::Product.class_eval do
 
   validates :provider,  presence: true
 
-  def approval_request
-  	return publication_requests.last unless publication_requests.nil? || publication_requests.empty? 
+  validate :approved_and_available?
+  def approved_and_available?
+    if available_on.present?
+      errors.add(:status, "must be approved if the product is available") unless status == Spree::Product::APPROVED
+    elsif status == Spree::Product::APPROVED
+      errors.add(:available_on, "must be set if the product is approved") unless available_on.present?
+    end
   end
   
+  def approval_request
+    return publication_requests.last unless publication_requests.nil? || publication_requests.empty? 
+  end
+
 end
