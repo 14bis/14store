@@ -1,0 +1,45 @@
+<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
+
+<%= render :partial => 'spree/admin/shared/product_tabs', :locals => { :current => 'PublicationRequests' } %>
+
+<% unless @product.publication_requests.any? %>
+  <div class="no-objects-found">
+    <%= t(:no_publication_requests_found) %>.
+  </div>
+<% else %>
+
+  <table class="index">
+    <colgroup>
+      <col style="width: 50%">
+      <col style="width: 50%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th><%= t(:created_at) %></th>
+        <th><%= t(:status) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% (@product.publication_requests).each do |publication_request| %>
+        <tr id="<%= spree_dom_id publication_request %>" class="<%= cycle('odd', 'even')%>">
+          <td><%= l publication_request.created_at.to_date %></td>
+          <td>
+            <% case publication_request.status %>
+          	<% when PublicationRequest::OPEN %>
+          	  <%= link_to t('accept'), admin_product_publication_request_path(@product, publication_request, :accept => true), :method=> :put  %> &nbsp/&nbsp
+          	  <%= link_to t('reject'), admin_product_publication_request_path(@product, publication_request, :reject => true), :method=> :put %>
+          	<% when PublicationRequest::CANCELED %>
+          		<%= t(:canceled_at, :resource => (l publication_request.updated_at.to_date)) %>
+          	<% else #closed %>
+          		<%= t(:closed_at, :resource => (l publication_request.updated_at.to_date)) %>
+          	<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+<% end %>

@@ -1,5 +1,6 @@
 module Management
   class BaseController < ApplicationController
+    include Spree::Core::ControllerHelpers::Common
     helper 'spree/admin/base'
     layout '/layouts/management'
     

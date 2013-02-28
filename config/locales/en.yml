@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+  submited_for_aproval: "%{resource} has been submitted for approval!"
+  approved_at: "Approved at %{resource}"
+  submited_at: "Submited at %{resource}"
+  rejected_at: "Rejected at %{resource}"
+  
+  closed_at: "Closed at %{resource}"
+  canceled_at: "Canceled at %{resource}"
+  publication_request_mailer: 
+    notify_publication_request: 
+      subject: "Publication request for %{product_name}"
+      content: "The provider %{provider_name} has submitted the product %{product_name} for approval at %{publication_request_created_at}"

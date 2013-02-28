@@ -12,6 +12,7 @@ describe Spree::Product do
   it { should respond_to(:provider_id) }
   it { should respond_to(:requirements) }
   it { should respond_to(:trial_period)}
+  it { should respond_to(:publication_requests) }
   
   describe "during validation" do
     it "has a valid factory" do

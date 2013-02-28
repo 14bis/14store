@@ -45,6 +45,7 @@ FactoryGirl.define do
     price         { rand }
     trial_period  14
     available_on  { 2.days.ago..Time.now }
+    status        Spree::Product::APPROVED
     provider
   end
 

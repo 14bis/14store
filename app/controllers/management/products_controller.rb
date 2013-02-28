@@ -2,6 +2,7 @@ module Management
   class ProductsController < BaseController
     load_and_authorize_resource :find_by => :permalink, :class => "Spree::Product"
     before_filter :load_data, :except => :index
+    before_filter :remove_available_on, :only => [:create, :update]
     respond_to :html
     respond_to :js, :only => [:destroy]
 
@@ -19,11 +20,9 @@ module Management
     end
     
     def new
-      # @product = spree_current_user.provider.products.build()
     end
     
     def edit
-      # @product = Spree::Product.find_by_permalink(params[:id])
     end
     
     def create
@@ -66,6 +65,10 @@ module Management
         @option_types = Spree::OptionType.order(:name)
         @tax_categories = Spree::TaxCategory.order(:name)
         @shipping_categories = Spree::ShippingCategory.order(:name)
+      end
+
+      def remove_available_on
+        params[:product][:available_on] = @product.available_on
       end
   
   end

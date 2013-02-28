@@ -49,11 +49,13 @@ namespace :db do
       else
         trial_period = 0
       end
-      Spree::Product.create!(name: name,
+
+      p = Spree::Product.new(name: name,
                              price: price,
                              available_on: available_on,
-                             provider_id: provider_id,
-                             trial_period: trial_period)
+                             provider_id: provider_id)
+      p.status = Spree::Product::APPROVED
+      p.save!
     end
 
   end
