@@ -18,7 +18,7 @@ Spree::Product.class_eval do
     Spree::Product::STATUSES[status]
   end
   
-  attr_accessible :provider_id, :specification_ids
+  attr_accessible :provider_id, :specification_ids, :trial_period
 
   belongs_to :provider
   has_many :requirements
@@ -56,6 +56,7 @@ Spree::Product.class_eval do
     if self.have_trial_period?
       "The #{self.name} is available to free use for #{pluralize( self.trial_period / 7, 'week' )} ."
     end
+  end
   
   def approval_request
     return publication_requests.last unless publication_requests.nil? || publication_requests.empty? 
