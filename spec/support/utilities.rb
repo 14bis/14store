@@ -21,7 +21,6 @@ def stub_authorize!
   end
 end
 
-def stub_login!(user)
-  ApplicationController.any_instance.stub(:try_spree_current_user).and_return(user)
-  ApplicationController.any_instance.stub(:spree_current_user).and_return(user)
+def stub_management_login!(user)
+  Management::BaseController.any_instance.stub(:spree_current_user).and_return(user)
 end

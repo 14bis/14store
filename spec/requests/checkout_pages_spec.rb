@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "Checkout proccess starting from product#show" do
   let(:user) { FactoryGirl.create(:user) }
-  let(:product) { FactoryGirl.create(:product) }
+  let(:product) { FactoryGirl.create(:product_approved) }
   before do 
     Spree::Order.any_instance.stub(:user).and_return(user)
     visit spree.product_path product

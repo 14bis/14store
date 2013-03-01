@@ -44,9 +44,11 @@ FactoryGirl.define do
     name          "Product 1"
     price         { rand }
     trial_period  14
-    available_on  { 2.days.ago..Time.now }
-    status        Spree::Product::APPROVED
     provider
+    factory :product_approved do
+      available_on  { 2.days.ago..Time.now }
+      status        Spree::Product::APPROVED
+    end
   end
 
   factory :specification_category do

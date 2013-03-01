@@ -4,7 +4,7 @@ describe "Store Product Pages" do
 
   describe "show" do
     context "with trial period" do
-      let(:product_with_trial) { FactoryGirl.create(:product, :trial_period => 1) }
+      let(:product_with_trial) { FactoryGirl.create(:product_approved, :trial_period => 1) }
       before { visit spree.product_path product_with_trial }
       it "has trial css class" do
         page.should have_selector (".trial")
@@ -15,7 +15,7 @@ describe "Store Product Pages" do
     end
     context "without trial period" do
       it "doesn't have trial css class" do
-        product = FactoryGirl.create(:product, :trial_period => 0)
+        product = FactoryGirl.create(:product_approved, :trial_period => 0)
         visit spree.product_path product
         page.should_not have_selector (".trial")
       end

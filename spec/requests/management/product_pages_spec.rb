@@ -7,7 +7,7 @@ describe "Management products" do
     @user_provider.provider.destroy 
     @user_provider.destroy 
   end
-  before { stub_login! @user_provider }
+  before { stub_management_login! @user_provider }
   let(:new_name) { "New product name" }
   let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider) }
       
@@ -34,7 +34,7 @@ describe "Management products" do
         page.should_not have_content "Test3"
       end
       it "displays a button to request publication" do
-        page.should have_content 'Request Publication'
+        page.should have_content 'Submit For Aproval'
       end
     end
   end

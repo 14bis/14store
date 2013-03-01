@@ -14,7 +14,7 @@ describe "Management namespace" do
     describe "when attempting to visit the protect area" do
       describe "after login as a user that has the spree_role :provider" do
         before do
-          stub_login! user_provider
+          stub_management_login! user_provider
           visit management_path
         end
         
@@ -30,7 +30,7 @@ describe "Management namespace" do
       
       describe "after login as a user that doesn't have the spree_role :provider" do
         before do
-          stub_login! user
+          stub_management_login! user
           visit management_path
         end
         it "should render the home page" do

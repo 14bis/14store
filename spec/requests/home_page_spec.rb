@@ -30,13 +30,13 @@ describe "Home page" do
 
   context "with products available to show" do
     it "displays a products list" do
-      FactoryGirl.create(:product)
+      FactoryGirl.create(:product_approved)
       visit "/"
       page.should have_selector('ul#products')
     end
 
     it "displays the provider for each product" do
-      products = [FactoryGirl.create(:product), FactoryGirl.create(:product)]
+      products = [FactoryGirl.create(:product_approved), FactoryGirl.create(:product_approved)]
       visit "/"
       products.each do |product|
         within "#product_#{product.id}" do
@@ -46,8 +46,8 @@ describe "Home page" do
     end
 
     it "should contain the trial class only if a product have trial period" do
-      product_with_trial = FactoryGirl.create(:product, :trial_period => 1)
-      product_without_trial = FactoryGirl.create(:product, :trial_period => 0)
+      product_with_trial = FactoryGirl.create(:product_approved, :trial_period => 1)
+      product_without_trial = FactoryGirl.create(:product_approved, :trial_period => 0)
       visit "/"
       page.should have_selector( "#product_#{product_with_trial.id}.trial" )
       page.should_not have_selector( "#product_#{product_without_trial.id}.trial" )
