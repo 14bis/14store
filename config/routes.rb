@@ -79,7 +79,7 @@ end
 Spree::Core::Engine.routes.prepend do
 
     namespace :admin do
-      resources :providers
+      resources :providers, :except => [:new, :create]
       resources :specification_categories
       resources :specifications
       resources :products do
