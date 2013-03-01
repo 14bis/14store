@@ -1,6 +1,0 @@
-<!-- insert_bottom "div#product-description" -->
-<% if @product.have_trial_period? %>
-  <%= content_tag :div, :class => "trial" do %>
-    <%= @product.trial_message %>
-  <% end %>
-<% end %>

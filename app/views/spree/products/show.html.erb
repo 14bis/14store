@@ -35,6 +35,12 @@
           <%= render :partial => 'cart_form' %>
         </div>
 
+        <% if @product.have_trial_period? %>
+          <%= content_tag :div, :class => "trial" do %>
+            <%= @product.trial_message %>
+          <% end %>
+        <% end %>
+
       </div>
 
       <%= render :partial => 'taxons' %>
