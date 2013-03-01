@@ -1,26 +1,24 @@
 require "spec_helper"
 
-describe "Checkout proccess" do
+describe "Checkout proccess starting from product#show" do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:product) { FactoryGirl.create(:product) }
+  before do 
+    Spree::Order.any_instance.stub(:user).and_return(user)
+    visit spree.product_path product
+  end
 
-  context "with a logged user" do
-    before { login FactoryGirl.create(:user) }
-    it "checks out and send emails" do
-      product = FactoryGirl.create(:product)
-      visit "/"
-      click_link product.name
-      click_button "add-to-cart-button"
-      click_button "Checkout"
+  it "displays trial period message" do
+    page.should have_content( product.trial_message )
+  end
+  describe "after purchase" do
+    before { click_button "Purchase" }
+    it "places an order and send emails" do
       click_button "Place Order"
       ActionMailer::Base.deliveries.should_not be_empty
       page.should have_content("Order")
     end
-
-    it "displays trial period message if available" do
-      product = FactoryGirl.create(:product)
-      visit "/"
-      click_link product.name
-      click_button "add-to-cart-button"
-      click_button "Checkout"
+    it "displays trial period full message" do
       page.should have_content( product.trial_full_message )
     end
   end

@@ -1,14 +1,11 @@
 require "spec_helper"
 
 describe "Home page" do
-
   context "with a logged user" do
-
     it "shows link for user's account" do
       login FactoryGirl.create(:user)
       page.should have_selector('a', :text => "My Account")
     end
-    
     context "as provider" do
       it "shows links for user's account and provider administration" do
         login FactoryGirl.create(:user_provider)
@@ -16,20 +13,18 @@ describe "Home page" do
         page.should have_content( 'Management')
       end
     end
-    
     context "as admin" do
       it "shows links for user's account and store administration" do
         login FactoryGirl.create(:admin)
         page.should have_selector('a', :text => "Administration")
       end
     end
-    
   end
 
   context "with no products available to show" do
-    it "displays the translated message for :no_products_found" do
+    it "displays 'No Products Found'" do
       visit "/"
-      page.should have_content( I18n.t('no_products_found') )
+      page.should have_content( 'No products found' )
     end
   end
 
@@ -50,16 +45,13 @@ describe "Home page" do
       end
     end
 
-    it "must contain the trial class if a product have trial period" do
-      product = FactoryGirl.create(:product)
+    it "should contain the trial class only if a product have trial period" do
+      product_with_trial = FactoryGirl.create(:product, :trial_period => 1)
+      product_without_trial = FactoryGirl.create(:product, :trial_period => 0)
       visit "/"
-      within "#products" do
-        if product.have_trial_period?
-          page.should have_selector( "li.trial" )
-        end
-      end
+      page.should have_selector( "#product_#{product_with_trial.id}.trial" )
+      page.should_not have_selector( "#product_#{product_without_trial.id}.trial" )
     end
-
   end
 
 end
