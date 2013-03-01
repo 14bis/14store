@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Providers" do
+describe "spree_admin_providers_pages" do
 
   let(:user) { FactoryGirl.create(:admin) }
   after(:all) { user.destroy }

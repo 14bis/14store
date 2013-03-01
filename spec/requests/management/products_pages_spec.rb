@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Management products" do
+describe "management_products_pages" do
 
   before(:all) { @user_provider = FactoryGirl.create(:user_provider) }
   after(:all) do 

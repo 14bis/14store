@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Admin Users" do
+describe "spree_admin_users_pages" do
   stub_authorization!
   let(:user) { FactoryGirl.create(:user) }
   let(:user_provider) { FactoryGirl.create(:user_provider) }
