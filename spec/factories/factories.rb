@@ -43,7 +43,7 @@ FactoryGirl.define do
   factory :product, class: Spree::Product do
     name          "Product 1"
     price         { rand }
-    trial_period  14
+    trial_period  0
     provider
     factory :product_approved do
       available_on  { 2.days.ago..Time.now }
@@ -58,12 +58,16 @@ FactoryGirl.define do
 
   factory :specification do
     specification_category
-    description { Faker::Lorem.sentence }
+    description { Faker::Lorem.sentence } 
   end
 
   factory :requirement do
     specification
     product
+  end
+
+  factory :order, class: Spree::Order do
+    user
   end
 
 end

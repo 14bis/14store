@@ -12,6 +12,10 @@ describe "Management namespace" do
     end
     
     describe "when attempting to visit the protect area" do
+      it "redirects to login" do
+        visit management_path
+        current_path.should == "/login"
+      end
       describe "after login as a user that has the spree_role :provider" do
         before do
           stub_management_login! user_provider
