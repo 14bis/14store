@@ -7,7 +7,7 @@ describe Management::ProductsController do
     @user_provider.provider.destroy
     @user_provider.destroy 
   }
-  before { stub_management_login! @user_provider }
+  before { stub_login @user_provider }
   let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider) }
 
   describe "GET #index" do

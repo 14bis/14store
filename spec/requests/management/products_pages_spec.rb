@@ -7,9 +7,9 @@ describe "management_products_pages" do
     @user_provider.provider.destroy 
     @user_provider.destroy 
   end
-  before { stub_management_login! @user_provider }
+  before { stub_login @user_provider }
   let(:new_name) { "New product name" }
-  let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider) }
+  let(:my_product) { FactoryGirl.create(:product, :provider => @user_provider.provider, :name => "My Product") }
       
   describe "index" do
     describe "when has no owner products to show" do
@@ -23,18 +23,21 @@ describe "management_products_pages" do
     
     describe "when has owner products to show" do
       before do
-        FactoryGirl.create(:product, :provider => @user_provider.provider, :name => "Test1")
-        FactoryGirl.create(:product, :provider => @user_provider.provider, :name => "Test2")
-        FactoryGirl.create(:product, :name => "Test3")
+        my_product
+        FactoryGirl.create(:product, :name => "Other Product")
         visit management_products_path
       end
       it "displays the products" do
-        page.should have_content "Test1"
-        page.should have_content "Test2"
-        page.should_not have_content "Test3"
+        page.should have_content "My Product"
+        page.should_not have_content "Other Product"
       end
-      it "displays a button to request publication" do
-        page.should have_content 'Submit For Aproval'
+      it "submits a product for approval" do
+        within "#product_#{my_product.id}" do
+          click_link 'Submit For Aproval'
+        end
+        within "#product_#{my_product.id}" do
+          page.should have_content "Submitted"
+        end
       end
     end
   end

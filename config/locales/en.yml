@@ -5,7 +5,7 @@ en:
   hello: "Hello world"
   submited_for_aproval: "%{resource} has been submitted for approval!"
   approved_at: "Approved at %{resource}"
-  submited_at: "Submited at %{resource}"
+  submitted_at: "Submitted at %{resource}"
   rejected_at: "Rejected at %{resource}"
   
   closed_at: "Closed at %{resource}"

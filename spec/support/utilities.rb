@@ -21,6 +21,14 @@ def stub_authorize!
   end
 end
 
-def stub_management_login!(user)
+def stub_login (user)
   Management::BaseController.any_instance.stub(:spree_current_user).and_return(user)
+  Spree::Admin::BaseController.any_instance.stub(:spree_current_user).and_return(user)
+end
+
+def skeep_authorize!
+  before do
+    Management::BaseController.any_instance.should_receive(:authorize!).any_number_of_times.and_return(true)
+    Spree::Admin::BaseController.any_instance.should_receive(:authorize!).any_number_of_times.and_return(true)
+  end
 end

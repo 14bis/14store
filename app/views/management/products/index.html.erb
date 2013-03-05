@@ -35,7 +35,7 @@
             <% when Spree::Product::APPROVED %>
               <%= t(:approved_at, :resource => (l product.available_on.to_date)) %>
             <% when Spree::Product::SUBMITTED %>
-              <%= t(:submited_at, :resource => (l product.approval_request.updated_at.to_date)) %>
+              <%= t(:submitted_at, :resource => (l product.approval_request.updated_at.to_date)) %>
               <%= link_to t('cancel'), management_product_publication_request_path(product, product.approval_request), :method=> :put  %>
             <% when Spree::Product::REJECTED %>
               <%= t(:rejected_at, :resource => (l product.approval_request.updated_at.to_date)) %>

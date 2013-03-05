@@ -70,4 +70,9 @@ FactoryGirl.define do
     user
   end
 
+  factory :publication_request do
+    status { PublicationRequest::OPEN }
+    product
+  end
+
 end

@@ -13,10 +13,6 @@ Spree::Product.class_eval do
   attr_protected :status
   validates_inclusion_of :status, :in => Spree::Product::STATUSES.keys,
       :message => "must be in #{Spree::Product::STATUSES.values.join ', '}"
-  # just a helper method for the view
-  def status_sym
-    Spree::Product::STATUSES[status]
-  end
   
   attr_accessible :provider_id, :specification_ids, :trial_period
 
