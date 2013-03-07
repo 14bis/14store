@@ -23,12 +23,12 @@ describe "spree_admin_users_pages" do
         fill_in "Code", with: "P"
         fill_in "user_provider_attributes_email", with: "provider@provider.com"
         check("user_spree_role_provider")
-        expect{click_button "Create"}.to change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => ROLE_PROVIDER}).count}.by(1)
+        expect{click_button "Create"}.to change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => Spree::Role::PROVIDER}).count}.by(1)
       end
     end
     context "without provider role" do
       it "doesn't add a provider user" do
-        expect{click_button "Create"}.to_not change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => ROLE_PROVIDER}).count}.by(1)
+        expect{click_button "Create"}.to_not change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => Spree::Role::PROVIDER}).count}.by(1)
       end
       it "increase user count by 1" do
         expect{click_button "Create"}.to change{Spree::User.count}.by(1)
@@ -58,7 +58,7 @@ describe "spree_admin_users_pages" do
         expect{click_button "Update"}.to change{Provider.count}.by(1)
       end
       it "increase the provider user count" do
-        expect{click_button "Update"}.to change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => ROLE_PROVIDER}).count}.by(1)
+        expect{click_button "Update"}.to change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => Spree::Role::PROVIDER}).count}.by(1)
       end
     end
   end
