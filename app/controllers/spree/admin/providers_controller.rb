@@ -14,7 +14,7 @@ module Spree
       end
       
       def load_data
-        @available_countries = [Spree::Country.find_or_create_by_iso_and_name('BR', 'Brazil'), Spree::Country.find_or_create_by_iso_and_name('US', 'United States')]
+        @available_countries = Spree::Country::AVAILABLE_COUNTRIES
         @available_states = []
         @available_countries.each do |country|
           @available_states = @available_states + country.states
