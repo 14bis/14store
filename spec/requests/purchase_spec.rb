@@ -21,9 +21,12 @@ describe "Purchase" do
       within "#order-total" do page.should have_content product_trial.display_amount end
     end
     context "when places an order" do
+      before { click_button "Place Order" }
       it "sends emails" do
-        click_button "Place Order"
         ActionMailer::Base.deliveries.should_not be_empty
+      end
+      it "doen't show payment information" do
+        page.should_not have_selector ".payment-info" 
       end
     end
   end
@@ -32,8 +35,13 @@ describe "Purchase" do
       visit spree.product_path product
       click_button "Purchase"
     end
+    it "doesn't display the shipping address" do
+      page.should_not have_selector "#shipping"
+    end
     it "displays the payment state" do
-      page.should have_selector "#checkout-step-payment"
+      within "ol.progress-steps" do
+        page.should have_content "Payment"
+      end
     end
     it "doesn't include more than one product" do
       visit spree.product_path product

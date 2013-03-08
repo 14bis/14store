@@ -1,5 +1,6 @@
 Spree::Order.class_eval do
   checkout_flow do
+    go_to_state :address, :if => lambda { |order| order.payment_required? }
     go_to_state :payment, :if => lambda { |order| order.payment_required? }
     go_to_state :confirm, :if => lambda { |order| order.confirmation_required? }
     go_to_state :complete
@@ -26,6 +27,18 @@ Spree::Order.class_eval do
       logger.error("#{e.class.name}: #{e.message}")
       logger.error(e.backtrace * "\n")
     end
+  end
+
+  # Validation inside spree
+  # before_validation :clone_billing_address, :if => :use_billing?
+  # Override those methods to never use billing address
+  def use_billing?
+    true
+  end
+  # Instead of clone, set to nil
+  def clone_billing_address
+    self.ship_address = nil
+    true
   end
 
 end
