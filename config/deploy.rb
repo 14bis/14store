@@ -35,11 +35,11 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  # desc "Installs required gems"
-  # task :gems, :roles => :app do
-  #   run "cd #{current_path} && bundle install --without development test"
-  # end
-  # after "deploy:setup", "deploy:gems"
+  # desc "Installs required gems"  
+  # task :gems, :roles => :app do  
+  #   run "cd #{current_path} && bundle install --without development test"  
+  # end  
+  # after "deploy:setup", "deploy:gems"  
 end
 
 task :symlink_database_yml do
