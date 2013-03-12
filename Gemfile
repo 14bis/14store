@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+# Javascript
+gem "therubyracer", :require => 'v8'
+
 gem 'rails', '3.2.11'
-gem 'capistrano'
 gem 'globalize3'
 
 # Bundle edge Rails instead:
@@ -55,7 +57,7 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
