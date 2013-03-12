@@ -8,7 +8,7 @@ Spree::Admin::UsersController.class_eval do
   end
   
   def remove_provider
-    if !params["user"]["spree_role_ids"].include?(Spree::Role::PROVIDER.id.to_s)
+    if !params["user"]["spree_role_ids"].include?(Spree::Role.find_by_name("provider").id.to_s)
       params["user"].delete "provider_attributes"
       @user.provider = nil
     end

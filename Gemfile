@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-# Javascript
-gem "therubyracer", :require => 'v8'
-
 gem 'rails', '3.2.11'
 gem 'globalize3'
 
@@ -11,6 +8,8 @@ gem 'globalize3'
 
 group :production do
   gem "pg"
+  # Javascript
+  gem "therubyracer"
 end
 
 group :development, :test do

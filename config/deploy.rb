@@ -1,7 +1,3 @@
-# install application’s gem dependencies onto the server with Bundler,
-# and precompile the assets
-require "bundler/capistrano"
-load "deploy/assets"
 
 set :application, "14store"
 set :repository,  "git@github.com:14bis/14store.git"
@@ -16,13 +12,13 @@ set :use_sudo, false
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :server, "ec2-54-225-228-173.compute-1.amazonaws.com"
-role :web, server                          # Your HTTP server, Apache/etc
-role :app, server                          # This may be the same as your `Web` server
-role :db,  server, :primary => true # This is where Rails migrations will run
-role :db,  server
+set :location, "ec2-54-225-228-173.compute-1.amazonaws.com"
+role :web, location                          # Your HTTP server, Apache/etc
+role :app, location                          # This may be the same as your `Web` server
+role :db,  location, :primary => true # This is where Rails migrations will run
+role :db,  location
 
-default_run_options[:pty] = true 
+default_run_options[:shell] = '/bin/bash --login'
 default_environment["RAILS_ENV"] = 'production'
 
 # if you want to clean up old releases on each deploy uncomment this:
@@ -39,16 +35,14 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
 
-  desc "Installs required gems"  
-  task :gems, :roles => :app do  
-    run "cd #{current_path} && bundle install --without development test"  
-  end  
-  after "deploy:setup", "deploy:gems"  
+  # desc "Installs required gems"
+  # task :gems, :roles => :app do
+  #   run "cd #{current_path} && bundle install --without development test"
+  # end
+  # after "deploy:setup", "deploy:gems"
 end
 
 task :symlink_database_yml do
-  run "rm #{release_path}/config/database.yml"
-  run "ln -sfn #{shared_path}/config/database.yml
-       #{release_path}/config/database.yml"
+  run "ln -sf #{shared_path}/database.yml #{release_path}/config/database.yml"
 end
 after "bundle:install", "symlink_database_yml"

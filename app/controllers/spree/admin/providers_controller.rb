@@ -14,7 +14,7 @@ module Spree
       end
       
       def load_data
-        @available_countries = Spree::Country::AVAILABLE_COUNTRIES
+        @available_countries = Spree::Country.available_countries
         @available_states = []
         @available_countries.each do |country|
           @available_states = @available_states + country.states
