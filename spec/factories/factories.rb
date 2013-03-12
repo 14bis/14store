@@ -22,12 +22,12 @@ FactoryGirl.define do
 
     after(:create) do |user, evaluator|
       if evaluator.role == "admin"
-         user.spree_roles = [Spree::Role::ADMIN]
+         user.spree_roles = [Spree::Role.find_by_name("admin")]
       elsif evaluator.role == "provider"
         user.provider = FactoryGirl.create(:provider)
-        user.spree_roles = [Spree::Role::PROVIDER]
+        user.spree_roles = [Spree::Role.find_by_name("provider")]
       else
-        user.spree_roles = [Spree::Role::USER]
+        user.spree_roles = [Spree::Role.find_by_name("user")]
       end
     end
   end
