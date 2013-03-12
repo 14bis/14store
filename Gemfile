@@ -9,7 +9,8 @@ gem 'globalize3'
 group :production do
   gem "pg"
   # Javascript
-  gem "therubyracer"
+  gem 'therubyracer'
+  gem 'execjs'
 end
 
 group :development, :test do
