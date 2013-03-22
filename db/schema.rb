@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322163033) do
+ActiveRecord::Schema.define(:version => 20130322175154) do
 
   create_table "providers", :force => true do |t|
     t.string   "name"
@@ -189,19 +189,6 @@ ActiveRecord::Schema.define(:version => 20130322163033) do
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
   end
-
-  create_table "spree_feedback_reviews", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "review_id",                    :null => false
-    t.integer  "rating",     :default => 0
-    t.text     "comment"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.string   "locale",     :default => "en"
-  end
-
-  add_index "spree_feedback_reviews", ["review_id"], :name => "index_feedback_reviews_on_review_id"
-  add_index "spree_feedback_reviews", ["user_id"], :name => "index_feedback_reviews_on_user_id"
 
   create_table "spree_gateways", :force => true do |t|
     t.string   "type"
@@ -386,7 +373,7 @@ ActiveRecord::Schema.define(:version => 20130322163033) do
   add_index "spree_product_translations", ["spree_product_id"], :name => "index_spree_product_translations_on_spree_product_id"
 
   create_table "spree_products", :force => true do |t|
-    t.string   "name",                                               :default => "",    :null => false
+    t.string   "name",                 :default => "",    :null => false
     t.text     "description"
     t.datetime "available_on"
     t.datetime "deleted_at"
@@ -395,15 +382,13 @@ ActiveRecord::Schema.define(:version => 20130322163033) do
     t.string   "meta_keywords"
     t.integer  "tax_category_id"
     t.integer  "shipping_category_id"
-    t.integer  "count_on_hand",                                      :default => 0
-    t.datetime "created_at",                                                            :null => false
-    t.datetime "updated_at",                                                            :null => false
-    t.boolean  "on_demand",                                          :default => false
+    t.integer  "count_on_hand",        :default => 0
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.boolean  "on_demand",            :default => false
     t.integer  "provider_id"
     t.integer  "trial_period"
-    t.integer  "status",                                             :default => 0
-    t.decimal  "avg_rating",           :precision => 7, :scale => 5, :default => 0.0,   :null => false
-    t.integer  "reviews_count",                                      :default => 0,     :null => false
+    t.integer  "status",               :default => 0
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"
@@ -485,21 +470,6 @@ ActiveRecord::Schema.define(:version => 20130322163033) do
     t.text     "reason"
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
-  end
-
-  create_table "spree_reviews", :force => true do |t|
-    t.integer  "product_id"
-    t.string   "name"
-    t.string   "location"
-    t.integer  "rating"
-    t.text     "title"
-    t.text     "review"
-    t.boolean  "approved",   :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "user_id"
-    t.string   "ip_address"
-    t.string   "locale",     :default => "en"
   end
 
   create_table "spree_roles", :force => true do |t|
@@ -596,12 +566,35 @@ ActiveRecord::Schema.define(:version => 20130322163033) do
     t.boolean  "show_rate_in_label",                               :default => true
   end
 
+  create_table "spree_taxon_translations", :force => true do |t|
+    t.integer  "spree_taxon_id"
+    t.string   "locale"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "spree_taxon_translations", ["locale"], :name => "index_spree_taxon_translations_on_locale"
+  add_index "spree_taxon_translations", ["spree_taxon_id"], :name => "index_spree_taxon_translations_on_spree_taxon_id"
+
   create_table "spree_taxonomies", :force => true do |t|
     t.string   "name",                      :null => false
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "position",   :default => 0
   end
+
+  create_table "spree_taxonomy_translations", :force => true do |t|
+    t.integer  "spree_taxonomy_id"
+    t.string   "locale"
+    t.string   "name"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "spree_taxonomy_translations", ["locale"], :name => "index_spree_taxonomy_translations_on_locale"
+  add_index "spree_taxonomy_translations", ["spree_taxonomy_id"], :name => "index_spree_taxonomy_translations_on_spree_taxonomy_id"
 
   create_table "spree_taxons", :force => true do |t|
     t.integer  "parent_id"

@@ -12,6 +12,9 @@ end
 module Store14
   class Application < Rails::Application
 
+    # I18n fallbacks for nil translations by globalize3
+    config.i18n.fallbacks = true # seems that it isn't working
+
     # Speed things up by not loading Rails env
     config.assets.initialize_on_precompile = false 
     config.assets.precompile += ['management/all.css']
@@ -62,7 +65,7 @@ module Store14
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = "pt-BR"
+    # config.i18n.default_locale = "pt-BR"
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
