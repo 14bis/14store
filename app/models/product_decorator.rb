@@ -21,6 +21,8 @@ Spree::Product.class_eval do
   has_many :specifications, :through => :requirements
   has_many :publication_requests, :dependent => :destroy
 
+  translates :name, :description, :meta_description, :meta_keywords
+
   validates :provider,  :presence => true
   validates :trial_period, :presence => true
   validates_numericality_of :trial_period, :less_than_or_equal_to => 85, :greater_than_or_equal_to => 0
