@@ -17,12 +17,12 @@ describe "spree_admin_providers_pages" do
     describe "page" do
       
       it "has all editable fields" do
-        page.should have_selector('label',    text: "Name")
+        page.should have_selector('label',    text: "Comercial Name")
         page.should have_selector('label',    text: "Email")
-        page.should have_selector('label',    text: "Phone1")
-        page.should have_selector('label',    text: "Phone2")
-        page.should have_selector('label',    text: "Address1")
-        page.should have_selector('label',    text: "Address2")
+        page.should have_selector('label',    text: "Telephone 1")
+        page.should have_selector('label',    text: "Telephone 2")
+        page.should have_selector('label',    text: "Address 1")
+        page.should have_selector('label',    text: "Address 2")
         page.should have_selector('label',    text: "Fax")
         page.should have_selector('label',    text: "City")
         page.should have_selector('label',    text: "State")

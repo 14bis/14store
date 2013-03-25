@@ -39,9 +39,11 @@
               <%= link_to t('cancel'), management_product_publication_request_path(product, product.approval_request), :method=> :put  %>
             <% when Spree::Product::REJECTED %>
               <%= t(:rejected_at, :resource => (l product.approval_request.updated_at.to_date)) %>
-              <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
+              <%= link_to t('submit_for_approval'), management_product_publication_requests_path(product),
+              :method=> :post, :id => "submit_for_approval"  %>
             <% when Spree::Product::NOT_SUBMITTED %>
-              <%= link_to t('submit_for_aproval'), management_product_publication_requests_path(product), :method=> :post  %>
+              <%= link_to t('submit_for_approval'), management_product_publication_requests_path(product), 
+                :method=> :post, :id => "submit_for_approval" %>
             <% end %>
           </td>
           <td class="actions">

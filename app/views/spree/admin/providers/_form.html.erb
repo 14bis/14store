@@ -41,7 +41,7 @@
 
   <div class="alpha eight columns">
     <%= f.field_container :name do %>
-    <%= f.label :name, raw(t(:name) + content_tag(:span, ' *', :class => 'required')) %>
+    <%= f.label :name, raw(Provider.human_attribute_name(:name) + content_tag(:span, ' *', :class => 'required')) %>
       <%= f.text_field :name, :class => 'fullwidth' %>
       <%= error_message_on :provider, :name %>
     <% end %>
@@ -49,7 +49,7 @@
   
   <div class="eight columns omega">
     <%= f.field_container :full_name do %>
-      <%= f.label :full_name, t(:full_name) %><br />
+      <%= f.label :full_name %><br />
       <%= f.text_field :full_name, :class => 'fullwidth' %>
       <%= error_message_on :provider, :full_name %>
     <% end %>
@@ -59,7 +59,7 @@
   
   <div class="alpha eight columns">
     <%= f.field_container :code do %>
-      <%= f.label :code, t(:code) %><br />
+      <%= f.label :code %><br />
       <%= f.text_field :code, :class => 'fullwidth' %>
       <%= error_message_on :provider, :code %>
     <% end %>
@@ -67,7 +67,7 @@
 
   <div class="four columns">
     <%= f.field_container :email do %>
-      <%= f.label :email, raw(t(:email) + content_tag(:span, ' *', :class => 'required')) %>
+      <%= f.label :email, raw(Provider.human_attribute_name(:email) + content_tag(:span, ' *', :class => 'required')) %>
       <%= f.text_field :email, :class => 'fullwidth' %>
       <%= error_message_on :provider, :email %>
     <% end %>
@@ -75,7 +75,7 @@
   
   <div class="four columns omega">
     <%= f.field_container :website do %>
-      <%= f.label :website, t(:website) %><br />
+      <%= f.label :website %><br />
       <%= f.text_field :website, :class => 'fullwidth' %>
       <%= error_message_on :provider, :website %>
     <% end %>
@@ -85,7 +85,7 @@
   
   <div class="alpha four columns">
     <%= f.field_container :phone1 do %>
-      <%= f.label :phone1, t(:phone1) %><br />
+      <%= f.label :phone1 %><br />
       <%= f.text_field :phone1, :class => 'fullwidth' %>
       <%= error_message_on :provider, :phone1 %>
     <% end %>
@@ -93,7 +93,7 @@
   
   <div class="four columns">
     <%= f.field_container :phone2 do %>
-      <%= f.label :phone2, t(:phone2) %><br />
+      <%= f.label :phone2 %><br />
       <%= f.text_field :phone2, :class => 'fullwidth' %>
       <%= error_message_on :provider, :phone2 %>
     <% end %>
@@ -101,7 +101,7 @@
   
   <div class="four columns">
     <%= f.field_container :fax do %>
-      <%= f.label :fax, t(:fax) %><br />
+      <%= f.label :fax %><br />
       <%= f.text_field :fax, :class => 'fullwidth' %>
       <%= error_message_on :provider, :fax %>
     <% end %>
@@ -111,7 +111,7 @@
   
   <div class="alpha eight columns">
     <%= f.field_container :address1 do %>
-      <%= f.label :address1, t(:address1) %><br />
+      <%= f.label :address1 %><br />
       <%= f.text_field :address1, :class => 'fullwidth' %>
       <%= error_message_on :provider, :address1 %>
     <% end %>
@@ -119,7 +119,7 @@
   
   <div class="eight columns omega">
     <%= f.field_container :address2 do %>
-      <%= f.label :address2, t(:address2) %><br />
+      <%= f.label :address2 %><br />
       <%= f.text_field :address2, :class => 'fullwidth' %>
       <%= error_message_on :provider, :address2 %>
     <% end %>
@@ -129,7 +129,7 @@
   
   <div class="alpha four columns">
     <%= f.field_container :country do %>
-      <%= f.label :country_id, t(:country) %><br />
+      <%= f.label :country %><br />
       <%= f.collection_select :country_id, @available_countries, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
     <% end %>
   </div>
@@ -137,14 +137,14 @@
   <% provider_country_id = @provider.country ? @provider.country.id : 0 %>
   <div class="four columns">
     <%= f.field_container :state do %>
-      <%= f.label :state_id, t(:state) %><br />
+      <%= f.label :state %><br />
       <%= f.collection_select :state_id, @available_states.select{|s| s.country.id == provider_country_id }, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
     <% end %>
   </div>
   
   <div class="four columns omega">
     <%= f.field_container :city do %>
-      <%= f.label :city, t(:city) %><br />
+      <%= f.label :city %><br />
       <%= f.text_field :city, :class => 'fullwidth' %>
       <%= error_message_on :provider, :city %>
     <% end %>

@@ -33,7 +33,7 @@ describe "management_products_pages" do
       end
       it "submits a product for approval" do
         within "#product_#{my_product.id}" do
-          click_link 'Submit For Aproval'
+          click_link 'submit_for_approval'
         end
         within "#product_#{my_product.id}" do
           page.should have_content "Submitted"

@@ -2,7 +2,7 @@
 
 <div class="alpha nine columns">
   <div class="field">
-    <%= f.label :provider_id_eq, t(:provider) %>
+    <%= f.label :provider, t(:_provider) %>
     <%= f.collection_select :provider_id_eq, Provider.all, :id, :name, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
   </div>
 </div>

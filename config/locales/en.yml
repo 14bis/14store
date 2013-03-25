@@ -1,18 +1,57 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-en:
-  hello: "Hello world"
-  submited_for_aproval: "%{resource} has been submitted for approval!"
+en:  
+  _provider: "Provider"
+  _providers: "Providers"
+  accept: "Accept"
+  activerecord: 
+    attributes: 
+      provider:
+        name: "Comercial Name"
+        full_name: "Full Name"
+        code: "Code"
+        website: "Website"
+        email: "Email"
+        phone1: "Telephone 1"
+        phone2: "Telephone 2"
+        fax: "Fax"
+        address1: "Address 1"
+        address2: "Address 2"
+        city: "City"
+        zipcode: "Zip Code"
+        state: "State"
+        country: "Country"
+        user: "User"
+        products: "Products"
+      publication_request:
+        created_at: "Date of Request"
+    models: 
+      provider: 
+        one: "Provider"
+        other: "Providers"
   approved_at: "Approved at %{resource}"
-  submitted_at: "Submitted at %{resource}"
-  rejected_at: "Rejected at %{resource}"
-  
-  closed_at: "Closed at %{resource}"
+  back_to_providers_list: "Back to Providers's List"
   canceled_at: "Canceled at %{resource}"
+  closed_at: "Closed at %{resource}"
+  devise:
+    user_sessions:
+      user:
+        signed_out: "Signed Out"
+    failure:
+      invalid: "Invalid user name or password" 
+  editing_provider: "Editing Provider"
+  listing_providers: "Listing Providers"
+  management: "Administration"
+  new_provider: "New Provider"
   publication_request_mailer: 
     notify_publication_request: 
       subject: "Publication request for %{product_name}"
       content: "The provider %{provider_name} has submitted the product %{product_name} for approval at %{publication_request_created_at}"
-      
-  purchase: "Purchase"  
+  purchase: "Purchase"
+  reject: "Reject"
+  rejected_at: "Rejected at %{resource}"
+  submit_for_approval:  "Request publication"
+  submitted_at: "Submitted at %{resource}"
+  submitted_for_aproval: "%{resource} has been submitted for approval!"
+  successfully_canceled: "Successfully canceled"
+  taxon_placeholder: "Add Taxon"
+
+

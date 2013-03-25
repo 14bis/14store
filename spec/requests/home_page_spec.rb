@@ -10,7 +10,7 @@ describe "Home page" do
       it "shows links for user's account and provider administration" do
         login FactoryGirl.create(:user_provider)
         page.should have_selector('a', :text => "My Account")
-        page.should have_content( 'Management')
+        page.should have_content( 'Administration')
       end
     end
     context "as admin" do

@@ -8,7 +8,7 @@ module Management
       save_each_within_transaction [ @product, @publication_request ] 
       # I am not sure if this is improving performance to respond faster to the user
       Thread.new { deliver_notify_publication_request_to_admins }
-    	flash[:success] = flash_message_for(@product, :submited_for_aproval)
+    	flash[:success] = flash_message_for(@product, :submitted_for_aproval)
       redirect_to management_products_path
     end
 
