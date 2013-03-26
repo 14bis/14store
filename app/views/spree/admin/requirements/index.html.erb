@@ -10,7 +10,7 @@
     <% @specification_categories.each do |sc| %>
     
       <%= f.field_container :requirements do %>
-        <%= f.label :specification_ids, t(sc.description) %>
+        <%= f.label :specification_ids, sc.description %>
         <%= f.select :specification_ids, Specification.where("specification_category_id = ?", [sc.id]).map {|s| [s.description, s.id]}, {}, :class => "select2 fullwidth", :multiple => true %>
       <% end %>
       

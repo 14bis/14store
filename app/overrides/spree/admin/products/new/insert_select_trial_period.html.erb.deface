@@ -1,4 +1,6 @@
-<!-- insert_before "code[erb-loud]:contains('f.field_container :name')" -->
+<!-- replace "code[erb-loud]:contains('f.field_container :available_on')" 
+     closing_selector "code[erb-silent]:contains('end')"
+-->
 <div class="fullwidth">
   <% 
     trial = { t('None') => 0 }
@@ -7,7 +9,7 @@
     end
   %>
   <%= f.field_container :trial_period do %>
-    <%= f.label :trial_period, t(:trial_period) %>
+    <%= f.label :trial_period %>
     <%= f.select :trial_period, trial, {}, {:class => 'select2 fullwidth'} %>
   <% end %>
 </div>

@@ -3,7 +3,11 @@ pt-BR:
   _providers: "Fornecedores"
   accept: "Aceitar"
   activerecord: 
-    attributes: 
+    attributes:
+      spree/product:
+        publication_requests: "Solicitações de Publicação"
+        requirements: "Requisitos"
+        trial_period: "Período de Testes"
       provider:
         name: "Nome comercial"
         full_name: "Razão social"
@@ -41,6 +45,9 @@ pt-BR:
   listing_providers: "Lista de Fornecedores"
   management: "Administração"
   new_provider: "Novo Fornecedor"
+  new_specification: "Nova Editarspecificação"
+  new_specification_category: "Nova Categoria de Especificação"
+  no_publication_requests_found: "Nenhuma Solicitação de Publicação Encontrada"
   publication_request_mailer: 
     notify_publication_request: 
       subject: "Solicitação de publicação para %{product_name}"
@@ -48,9 +55,12 @@ pt-BR:
   purchase: "Comprar"
   reject: "Rejeitar"
   rejected_at: "Rejeitado em %{resource}"
+  specification: "Especificação"
+  specification_category: "Categoria de Especificação"
+  specification_categories: "Categorias de Especificação"
+  specifications: "Especificações"
   submit_for_approval:  "Solicitar publicação"
   submitted_at: "Submetido em %{resource}"
   submitted_for_aproval: "%{resource} foi submetido para aprovação!"
   successfully_canceled: "Cancelado com sucesso"
   taxon_placeholder: "Adicionar Taxon"
-

@@ -19,7 +19,7 @@ ws = SpecificationCategory.create!(code: 'WS', description: 'Web Server')
 hd = SpecificationCategory.create!(code: 'HD', description: 'Hard Disk Size')
 ram = SpecificationCategory.create!(code: 'RAM', description: 'RAM Size')
 
-I18n.locale = :'pt-BT'
+I18n.locale = 'pt-BR'
 os.description = 'Sistema Operacional'
 os.save!
 ws.description = 'Servidor Web'

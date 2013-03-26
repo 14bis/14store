@@ -1,5 +1,5 @@
 <!-- insert_after "li:nth-last-child(1)" -->
 
 <li<%== ' class="active"' if current == 'PublicationRequests' %>>
-  <%= link_to_with_icon 'icon-file', t(:publication_requests), admin_product_publication_requests_path(@product) %>
+  <%= link_to_with_icon 'icon-file', Spree::Product.human_attribute_name(:publication_requests), admin_product_publication_requests_path(@product) %>
 </li>

@@ -3,7 +3,11 @@ en:
   _providers: "Providers"
   accept: "Accept"
   activerecord: 
-    attributes: 
+    attributes:
+      spree/product:
+        publication_requests: "Publication Requests"
+        requirements: "Requirements"
+        trial_period: "Trial Period"
       provider:
         name: "Comercial Name"
         full_name: "Full Name"
@@ -41,6 +45,9 @@ en:
   listing_providers: "Listing Providers"
   management: "Administration"
   new_provider: "New Provider"
+  new_specification: "New Specification"
+  new_specification_category: "New Specification Category"
+  no_publication_requests_found: "No Publication Requests Found"
   publication_request_mailer: 
     notify_publication_request: 
       subject: "Publication request for %{product_name}"
@@ -48,10 +55,12 @@ en:
   purchase: "Purchase"
   reject: "Reject"
   rejected_at: "Rejected at %{resource}"
+  specification: "Specification"
+  specification_category: "Specification Category"
+  specification_categories: "Specification Categories"
+  specifications: "Specifications"
   submit_for_approval:  "Request publication"
   submitted_at: "Submitted at %{resource}"
   submitted_for_aproval: "%{resource} has been submitted for approval!"
   successfully_canceled: "Successfully canceled"
   taxon_placeholder: "Add Taxon"
-
-
