@@ -10,6 +10,9 @@ Spree.config do |config|
   # Uncomment to override the default site name.
   # config.site_name = "Spree Demo Site"
   config.track_inventory_levels = false
+
+  # Spree will allow guest checkout by default
+  config.allow_guest_checkout = false
 end
 
 Spree.user_class = "Spree::User"
