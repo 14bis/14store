@@ -63,3 +63,6 @@ gem 'capistrano'
 gem 'spree', :git => 'http://github.com/spree/spree.git'
 gem 'spree_gateway', :git => 'http://github.com/spree/spree_gateway'
 gem 'spree_auth_devise', :git => 'http://github.com/spree/spree_auth_devise', :branch => 'edge'
+
+# gem 'spree_14rank', :path => '../spree_14rank'
+gem 'spree_14rank', :git => 'https://github.com/14bis/14rank.git'

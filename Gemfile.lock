@@ -60,6 +60,13 @@ GIT
       savon
       spree_core (~> 2.0.0.beta)
 
+GIT
+  remote: https://github.com/14bis/14rank.git
+  revision: c133958bdb5d12851a0f35884df9d09724c461f2
+  specs:
+    spree_14rank (0.0.1)
+      spree_core (~> 2.0.0.beta)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -371,6 +378,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simplecov
   spree!
+  spree_14rank!
   spree_auth_devise!
   spree_gateway!
   sqlite3
