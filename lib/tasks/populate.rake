@@ -3,6 +3,7 @@
 namespace :db do
   desc "Erase and fill database"
   task :populate => :environment do
+    I18n.locale = 'pt-BR'
 
     [Provider, Spree::Product, Specification].each(&:delete_all)
     @users = Spree::User.where("id > ?", 1)

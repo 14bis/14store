@@ -6,13 +6,7 @@ class ApplicationController < ActionController::Base
   end
   
   def unauthorized
-    if spree_current_user
-      flash[:error] = t(:authorization_failure)
-      redirect_to '/unauthorized'
-    else
-      session[:user_return_to] = request.url
-      redirect_to spree_login_path
-    end
+    redirect_to '/unauthorized'
   end
 
   def save_each_within_transaction objects
