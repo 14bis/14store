@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322175154) do
+ActiveRecord::Schema.define(:version => 20130415182259) do
 
   create_table "providers", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130322175154) do
     t.string   "website"
     t.string   "code"
     t.integer  "user_id"
+    t.float    "avg_rating"
   end
 
   create_table "publication_requests", :force => true do |t|
@@ -389,6 +390,7 @@ ActiveRecord::Schema.define(:version => 20130322175154) do
     t.integer  "provider_id"
     t.integer  "trial_period"
     t.integer  "status",               :default => 0
+    t.float    "avg_rating"
   end
 
   add_index "spree_products", ["available_on"], :name => "index_spree_products_on_available_on"
@@ -471,6 +473,35 @@ ActiveRecord::Schema.define(:version => 20130322175154) do
     t.datetime "created_at",                                                :null => false
     t.datetime "updated_at",                                                :null => false
   end
+
+  create_table "spree_review_feedbacks", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "review_id",                 :null => false
+    t.integer  "rating",     :default => 0
+    t.text     "comment"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "spree_review_feedbacks", ["review_id"], :name => "index_spree_review_feedbacks_on_review_id"
+  add_index "spree_review_feedbacks", ["user_id"], :name => "index_spree_review_feedbacks_on_user_id"
+
+  create_table "spree_reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.string   "location"
+    t.string   "title"
+    t.text     "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "type"
+    t.integer  "product_id"
+    t.integer  "provider_id"
+  end
+
+  add_index "spree_reviews", ["product_id"], :name => "index_spree_reviews_on_product_id"
+  add_index "spree_reviews", ["provider_id"], :name => "index_spree_reviews_on_provider_id"
+  add_index "spree_reviews", ["user_id"], :name => "index_spree_reviews_on_user_id"
 
   create_table "spree_roles", :force => true do |t|
     t.string "name"

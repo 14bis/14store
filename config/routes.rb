@@ -76,7 +76,9 @@ Store14::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
 end
 
-Spree::Core::Engine.routes.prepend do
+  Spree::Core::Engine.routes.prepend do
+
+    resources :providers, :only => [:show]
 
     namespace :admin do
       resources :providers, :except => [:new, :create]

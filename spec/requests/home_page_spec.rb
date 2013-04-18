@@ -35,12 +35,13 @@ describe "Home page" do
       page.should have_selector('ul#products')
     end
 
-    it "displays the provider for each product" do
+    it "displays a link for the provider of each product" do
       products = [FactoryGirl.create(:product_approved), FactoryGirl.create(:product_approved)]
       visit "/"
       products.each do |product|
         within "#product_#{product.id}" do
-          page.should have_content( product.provider.name )
+          provider = product.provider
+          page.should have_link( "#{provider.name}", href: spree.provider_path(provider) )
         end
       end
     end
