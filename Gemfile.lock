@@ -62,9 +62,9 @@ GIT
 
 GIT
   remote: https://github.com/14bis/14rank.git
-  revision: bf13f6eb1ac215af92aa8a746b97ebe5b16dbf45
+  revision: f2457909e180bc10764e7e73b3541fade550de0c
   specs:
-    spree_14rank (0.0.1)
+    spree_14rank (0.0.2)
       spree_core (~> 2.0.0.beta)
 
 GEM
