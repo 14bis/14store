@@ -36,6 +36,9 @@ pt-BR:
   canceled_at: "Cancelado em %{resource}"
   closed_at: "Fechado em %{resource}"
   devise:
+    user_registrations:
+      user:
+        signed_up: "Usuário registrado com sucesso"
     user_sessions:
       user:
         signed_out: "Saiu"

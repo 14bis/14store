@@ -35,13 +35,13 @@ default_environment["RAILS_ENV"] = 'production'
 # these http://github.com/rails/irs_process_scripts
 
 #If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
 
 # use database.yml from server instead of the one public on github
 task :symlink_database_yml do
@@ -58,7 +58,7 @@ namespace :assets do
     run_locally "bundle exec rake assets:clean_expired; bundle exec rake assets:precompile;"
     servers = find_servers :roles => [:app], :except => { :no_release => true }
     servers.each do |server|
-      run_locally "rsync -av ./public/assets/ #{user}@#{server}:#{current_path}/public/assets/;"
+      run_locally "rsync -av ./public/assets/ #{user}@#{server}:#{current_path}/public/assets/ --delete;"
     end
     # run_locally "mv public/assets public/__assets"
   end

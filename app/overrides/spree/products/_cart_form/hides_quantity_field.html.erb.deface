@@ -1,0 +1,3 @@
+<!-- replace "code[erb-loud]:contains(':quantity')" -->
+
+<%= hidden_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"), 1 %>
