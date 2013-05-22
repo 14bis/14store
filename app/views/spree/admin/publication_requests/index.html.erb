@@ -4,7 +4,7 @@
 
 <% unless @product.publication_requests.any? %>
   <div class="no-objects-found">
-    <%= t(:no_publication_requests_found) %>.
+    <%= Spree.t(:no_publication_requests_found) %>.
   </div>
 <% else %>
 
@@ -16,7 +16,7 @@
     <thead>
       <tr>
         <th><%= PublicationRequest.human_attribute_name :created_at %></th>
-        <th><%= t(:status) %></th>
+        <th><%= Spree.t(:status) %></th>
       </tr>
     </thead>
 
@@ -27,12 +27,12 @@
           <td>
             <% case publication_request.status %>
           	<% when PublicationRequest::OPEN %>
-          	  <%= link_to t('accept'), admin_product_publication_request_path(@product, publication_request, :accept => true), :method=> :put  %> &nbsp/&nbsp
-          	  <%= link_to t('reject'), admin_product_publication_request_path(@product, publication_request, :reject => true), :method=> :put %>
+          	  <%= link_to Spree.t('accept'), admin_product_publication_request_path(@product, publication_request, :accept => true), :method=> :put  %> &nbsp/&nbsp
+          	  <%= link_to Spree.t('reject'), admin_product_publication_request_path(@product, publication_request, :reject => true), :method=> :put %>
           	<% when PublicationRequest::CANCELED %>
-          		<%= t(:canceled_at, :resource => (l publication_request.updated_at.to_date)) %>
+          		<%= Spree.t(:canceled_at, :resource => (l publication_request.updated_at.to_date)) %>
           	<% else #closed %>
-          		<%= t(:closed_at, :resource => (l publication_request.updated_at.to_date)) %>
+          		<%= Spree.t(:closed_at, :resource => (l publication_request.updated_at.to_date)) %>
           	<% end %>
           </td>
         </tr>

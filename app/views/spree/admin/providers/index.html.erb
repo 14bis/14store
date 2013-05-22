@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= t(:listing_providers) %>
+  <%= Spree.t(:listing_providers) %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:new_user), new_admin_user_url, :icon => 'icon-plus', :id => 'admin_new_user_link' %>
+    <%= button_link_to Spree.t(:new_user), new_admin_user_url, :icon => 'icon-plus', :id => 'admin_new_user_link' %>
   </li>
 <% end %>
 
@@ -18,8 +18,8 @@
     </colgroup>
     <thead>
       <tr data-hook="admin_shipping_methods_index_headers">
-        <th><%= t(:name) %></th>
-        <th><%= t(:email) %></th>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:email) %></th>
         <th data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>
     <thead>
@@ -39,6 +39,6 @@
   </table>
 <% else %>
   <div class="no-objects-found">
-    <%= t(:no_results) %>
+    <%= Spree.t(:no_results) %>
   </div>
 <% end %>

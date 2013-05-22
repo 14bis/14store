@@ -31,7 +31,9 @@ describe "spree_admin_users_pages" do
         expect{click_button "Create"}.to_not change{Spree::User.includes("spree_roles").where(:spree_roles => {:id => Spree::Role.find_by_name("provider")}).count}.by(1)
       end
       it "increase user count by 1" do
+        save_and_open_page
         expect{click_button "Create"}.to change{Spree::User.count}.by(1)
+        save_and_open_page
       end
     end
   end

@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= t(:new_provider) %>
+  <%= Spree.t(:new_provider) %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:back_to_providers_list), admin_providers_path, :icon => 'icon-arrow-left' %>
+    <%= button_link_to Spree.t(:back_to_providers_list), admin_providers_path, :icon => 'icon-arrow-left' %>
   </li>
 <% end %>
 
