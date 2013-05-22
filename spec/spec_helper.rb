@@ -10,9 +10,9 @@ require 'rspec/autorun'
 require "capybara/rspec"
 
 # Spree helpers
-require 'spree/core/url_helpers'
-require 'spree/core/testing_support/controller_requests'
-require 'spree/core/testing_support/authorization_helpers'
+require 'spree/testing_support/url_helpers'
+require 'spree/testing_support/controller_requests'
+require 'spree/testing_support/authorization_helpers'
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -22,8 +22,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
 
   #Spree
-  config.include Spree::Core::UrlHelpers
-  config.include Spree::Core::TestingSupport::ControllerRequests#, :type => :controller
+  config.include Spree::TestingSupport::UrlHelpers
+  config.include Spree::TestingSupport::ControllerRequests#, :type => :controller
   config.include Devise::TestHelpers, :type => :controller
 
   # ## Mock Framework
