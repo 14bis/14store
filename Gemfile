@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'globalize3'
 
 # Bundle edge Rails instead:
@@ -60,9 +60,9 @@ gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
-gem 'spree', :git => 'http://github.com/spree/spree.git'
-gem 'spree_gateway', :git => 'http://github.com/spree/spree_gateway'
-gem 'spree_auth_devise', :git => 'http://github.com/spree/spree_auth_devise', :branch => 'edge'
+gem 'spree', :git => 'http://github.com/spree/spree.git', :tag => 'v2.0.0.rc1'
+gem 'spree_gateway', :git => 'http://github.com/spree/spree_gateway', :branch => '2-0-stable'
+gem 'spree_auth_devise', :git => 'http://github.com/spree/spree_auth_devise', :branch => '2-0-stable'
 
 # gem 'spree_14rank', :path => '../spree_14rank'
 gem 'spree_14rank', :git => 'https://github.com/14bis/14rank.git'
