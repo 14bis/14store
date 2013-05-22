@@ -50,6 +50,7 @@ describe "Management namespace" do
     before do
       visit management_path 
     end
+    # for some reason, the tabs are not being rendered
     it "should have a link to products" do
       page.find_link("Products")['/management/products']
     end

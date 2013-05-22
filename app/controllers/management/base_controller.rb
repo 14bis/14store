@@ -1,7 +1,7 @@
 module Management
   class BaseController < ApplicationController
-    include Spree::Core::ControllerHelpers::Common
-    helper 'spree/admin/base'
+    include Spree::Core::ControllerHelpers
+
     layout '/layouts/management'
     
     # before_filter :authorize_management
