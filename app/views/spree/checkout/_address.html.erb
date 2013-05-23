@@ -1,7 +1,7 @@
 <div class="center columns alpha six" data-hook="billing_fieldset_wrapper">
   <fieldset id="billing" data-hook>
     <%= form.fields_for :bill_address do |bill_form| %>
-      <legend align="center"><%= t(:billing_address) %></legend>
+      <legend align="center"><%= Spree.t(:billing_address) %></legend>
       <%= render :partial => 'spree/address/form', :locals => {:form => bill_form, :address_type => 'billing', :address => @order.bill_address} %>
     <% end %>
   </fieldset>
@@ -9,5 +9,5 @@
 
 <hr class="clear"/>
 <div class="form-buttons" data-hook="buttons">
-  <%= submit_tag t(:save_and_continue), :class => 'continue button primary' %>
+  <%= submit_tag Spree.t(:save_and_continue), :class => 'continue button primary' %>
 </div>

@@ -2,7 +2,7 @@
 
   <% if order.has_step?("address") %>
     <div class="columns alpha four">
-      <h6><%= t(:billing_address) %> <%= link_to "(#{t(:edit)})", checkout_state_path(:address) unless @order.completed? %></h6>
+      <h6><%= Spree.t(:billing_address) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:address) unless @order.completed? %></h6>
       <div class="address">
         <%= order.bill_address %>
       </div>
@@ -11,7 +11,7 @@
 
   <% if order.has_step?("address") %>
     <div class="columns omega four">
-      <h6><%= t(:payment_information) %> <%= link_to "(#{t(:edit)})", checkout_state_path(:payment) unless @order.completed? %></h6>
+      <h6><%= Spree.t(:payment_information) %> <%= link_to "(#{Spree.t(:edit)})", checkout_state_path(:payment) unless @order.completed? %></h6>
       <div class="payment-info">
         <% if order.credit_cards.empty? %>
           <%= content_tag(:span, order.payment.payment_method.name) if order.payment %>
@@ -20,7 +20,7 @@
             <% unless (cc_type = order.credit_cards.first.cc_type).blank? %>
               <%= image_tag "credit_cards/icons/#{order.credit_cards.first.cc_type}.png" %>
             <% end %>
-            <%= t(:ending_in)%> <%= order.credit_cards.first.last_digits %>
+            <%= Spree.t(:ending_in)%> <%= order.credit_cards.first.last_digits %>
           </span>
           <br />
           <span class="full-name">
@@ -44,9 +44,9 @@
 
   <thead id="line-items" data-hook>
     <tr data-hook"order_details_line_items_headers">
-      <th colspan="2"><%= t(:item) %></th>
-      <th class="price"><%= t(:price) %></th>
-      <th class="total"><span><%= t(:total) %></span></th>
+      <th colspan="2"><%= Spree.t(:item) %></th>
+      <th class="price"><%= Spree.t(:price) %></th>
+      <th class="total"><span><%= Spree.t(:total) %></span></th>
     </tr>
   </thead>
 
@@ -72,7 +72,7 @@
   </tbody>
   <tfoot id="order-total" data-hook="order_details_total">
     <tr class="total">
-      <td colspan="3"><b><%= t(:order_total) %>:</b></td>
+      <td colspan="3"><b><%= Spree.t(:order_total) %>:</b></td>
       <td class="total"><span id="order_total"><%= @order.display_total %></span></td>
     </tr>
   </tfoot>
@@ -88,7 +88,7 @@
   <% end %>
   <tfoot id="subtotal" data-hook="order_details_subtotal">
     <tr class="total" id="subtotal-row">
-      <td colspan="3"><b><%= t(:subtotal) %>:</b></td>
+      <td colspan="3"><b><%= Spree.t(:subtotal) %>:</b></td>
       <td class="total"><span><%= @order.display_item_total %></span></td>
     </tr>
   </tfoot>

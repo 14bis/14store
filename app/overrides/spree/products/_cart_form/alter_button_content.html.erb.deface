@@ -2,4 +2,4 @@
      closing_selector "code[erb-silent]:contains('end')"
      original 'Add To Cart' -->
 
-<%= t(:purchase) %>
+<%= Spree.t(:purchase) %>
