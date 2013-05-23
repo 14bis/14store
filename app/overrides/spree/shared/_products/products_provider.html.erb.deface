@@ -1,3 +1,0 @@
-<!-- insert_after "code[erb-loud]:contains('product.name')" -->
-
-<%= link_to truncate(product.provider.name, :length => 50), provider_path(product.provider), :title => product.provider.name %>
