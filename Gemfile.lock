@@ -82,7 +82,7 @@ GIT
 
 GIT
   remote: https://github.com/14bis/14rank.git
-  revision: d957bf86d8f7210eb8826eb56d925c7072386f64
+  revision: df071b302a13c5dddff75678bc06595741a35828
   specs:
     spree_14rank (0.0.2)
       spree_core (~> 2.0.0.beta)
