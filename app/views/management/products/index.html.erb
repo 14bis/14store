@@ -29,7 +29,7 @@
       <% @products.each do |product| %>
         <tr id="<%= dom_id product %>">
           <td><%= product.name %></td>
-          <td><%= product.price_in(current_currency).display_price %></td>
+          <td class="align-center"><%= product.display_price.to_html rescue '' %></td>
           <td>
             <% case product.status %>
             <% when Spree::Product::APPROVED %>
@@ -46,12 +46,11 @@
                 :method=> :post, :id => "submit_for_approval" %>
             <% end %>
           </td>
-          <td class="actions">
-              <%= link_to_edit_url edit_management_product_url(product), :no_text => true %>
+          <td class="actions" data-hook="admin_products_index_row_actions">
+              <%= link_to_edit_url edit_management_product_url(product), :no_text => true, :class => 'edit' unless product.deleted? %>
               &nbsp;
-              <%= link_to_delete product, :url => management_product_url(product), :no_text => true %>
-
-          </td>
+              <%= link_to_delete product, :url => management_product_url(product), :no_text => true unless product.deleted? %>
+            </td>
         </tr>
       <% end %>
      </tbody>

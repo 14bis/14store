@@ -1,13 +1,16 @@
 module Management
   module NavigationHelper
-    # Make an management tab that coveres one or more resources supplied by symbols
+   # Make an management tab that coveres one or more resources supplied by symbols
     # Option hash may follow. Valid options are
     # * :label to override link text, otherwise based on the first resource name (translated)
     # * :route to override automatically determining the default route
     # * :match_path as an alternative way to control when the tab is active, /products would match /management/products, /management/products/5/variants etc.
-    
-    def tab(*args)
+    def management_tab(*args)
       options = {:label => args.first.to_s}
+
+      # Return if resource is found and user is not allowed to :management
+      # return '' if klass = klass_for(options[:label]) and cannot?(:management, klass)
+
       if args.last.is_a?(Hash)
         options = options.merge(args.pop)
       end
@@ -15,7 +18,7 @@ module Management
 
       destination_url = options[:url] || spree.send("#{options[:route]}_path")
 
-      titleized_label = t(options[:label], :default => options[:label]).titleize
+      titleized_label = Spree.t(options[:label], :default => options[:label]).titleize
 
       css_classes = []
 
@@ -27,7 +30,7 @@ module Management
       end
 
       selected = if options[:match_path]
-        request.fullpath.starts_with?("#{root_path}management#{options[:match_path]}")
+        request.fullpath.starts_with?("#{spree.root_path}management#{options[:match_path]}")
       else
         args.include?(controller.controller_name.to_sym)
       end
@@ -39,31 +42,47 @@ module Management
       content_tag('li', link, :class => css_classes.join(' '))
     end
 
+    # finds class for a given symbol / string
+    #
+    # Example :
+    # :products returns Spree::Product
+    # :my_products returns MyProduct if MyProduct is defined
+    # :my_products returns My::Product if My::Product is defined
+    # if cannot constantize it returns nil
+    # This will allow us to use cancan abilities on tab
+    def klass_for(name)
+      model_name = name.to_s
+
+      ["Spree::#{model_name.classify}", model_name.classify, model_name.gsub('_', '/').classify].find do |t|
+        t.safe_constantize
+      end.try(:safe_constantize)
+    end
+
     def link_to_clone(resource, options={})
       options[:data] = {:action => 'clone'}
-      link_to_with_icon('icon-copy', t(:clone), clone_management_product_url(resource), options)
+      link_to_with_icon('icon-copy', Spree.t(:clone), clone_management_product_url(resource), options)
     end
 
     def link_to_new(resource)
       options[:data] = {:action => 'new'}
-      link_to_with_icon('icon-plus', t(:new), edit_object_url(resource))
+      link_to_with_icon('icon-plus', Spree.t(:new), edit_object_url(resource))
     end
 
     def link_to_edit(resource, options={})
       options[:data] = {:action => 'edit'}
-      link_to_with_icon('icon-edit', t(:edit), edit_object_url(resource), options)
+      link_to_with_icon('icon-edit', Spree.t(:edit), edit_object_url(resource), options)
     end
 
     def link_to_edit_url(url, options={})
       options[:data] = {:action => 'edit'}
-      link_to_with_icon('icon-edit', t(:edit), url, options)
+      link_to_with_icon('icon-edit', Spree.t(:edit), url, options)
     end
 
     def link_to_delete(resource, options={})
       url = options[:url] || object_url(resource)
-      name = options[:name] || t(:delete)
+      name = options[:name] || Spree.t(:delete)
       options[:class] = "delete-resource"
-      options[:data] = { :confirm => t(:are_you_sure), :action => 'remove' }
+      options[:data] = { :confirm => Spree.t(:are_you_sure), :action => 'remove' }
       link_to_with_icon 'icon-trash', name, url, options
     end
 
@@ -96,9 +115,9 @@ module Management
           object_name, action = url.split('/')[-2..-1]
           html_options['data-update'] = [action, object_name.singularize].join('_')
         end
-        
+
         html_options.delete('data-update') unless html_options['data-update']
-        
+
         html_options[:class] = 'button'
 
         if html_options[:icon]
@@ -129,5 +148,6 @@ module Management
         link_to(link_text, url)
       end
     end
+
   end
 end

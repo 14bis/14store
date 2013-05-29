@@ -1,5 +1,5 @@
 module Management
   module ProductsHelper
-    include Spree::Admin::ProductsHelper
+    # include Spree::Admin::ProductsHelper
   end
 end

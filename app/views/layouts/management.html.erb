@@ -6,7 +6,6 @@
 <!--[if gt IE 9]><!--><html lang="en"><!--<![endif]-->
   <head>
     <%= render :partial => 'spree/admin/shared/head' %>
-    <%= stylesheet_link_tag 'management/all' %>
   </head>
   
   <body class='admin'>
@@ -29,15 +28,17 @@
           <div class="progress-message"><%= t(:loading) %>...</div>
         </div>
       </div>
+
+      <%= render :partial => 'spree/admin/shared/alert', :collection => session[:alerts] %>
       
       <header id="header" data-hook>
 
         <div class="container">
           <figure data-hook="logo-wrapper" class="columns five">
-            <%= link_to image_tag(Spree::Config[:admin_interface_logo], :id => 'logo'), spree.admin_path %>
+            <%= link_to image_tag(Spree::Config[:admin_interface_logo], :id => 'logo'), management_path %>
           </figure>
 
-          <nav data-hook="management_login_navigation_bar" class="columns eleven">
+          <nav data-hook="admin_login_navigation_bar" class="columns eleven">
             <% if spree_current_user %>
               <ul id="login-nav" class="inline-menu">
                 <li data-hook="user-logged-in-as"><%= t(:logged_in_as) %>: <%= spree_current_user.email %></li>
@@ -50,11 +51,11 @@
         </div>
         
       </header>
-  
+
       <nav id="admin-menu" data-hook>
         <div class="container">
           <div class="sixteen columns main-menu-wrapper">
-            <ul class="inline-menu fullwidth-menu">
+            <ul data-hook="admin_tabs" class="inline-menu fullwidth-menu">
               <%= render :partial => 'management/shared/tabs' %>
             </ul>
           </div>

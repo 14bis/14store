@@ -1,4 +1,4 @@
-en:  
+en: 
   _provider: "Provider"
   _providers: "Providers"
   accept: "Accept"
@@ -11,9 +11,9 @@ en:
       provider:
         name: "Comercial Name"
         full_name: "Full Name"
-        code: "Code"
+        code: "Code Comercial"
         website: "Website"
-        email: "Email"
+        email: "Email Comercial"
         phone1: "Telephone 1"
         phone2: "Telephone 2"
         fax: "Fax"

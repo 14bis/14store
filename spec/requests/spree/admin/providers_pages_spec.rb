@@ -17,6 +17,7 @@ describe "spree_admin_providers_pages" do
     describe "page" do
       
       it "has all editable fields" do
+        save_and_open_page
         page.should have_selector('label',    text: "Comercial Name")
         page.should have_selector('label',    text: "Email")
         page.should have_selector('label',    text: "Telephone 1")
