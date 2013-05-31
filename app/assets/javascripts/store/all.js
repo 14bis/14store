@@ -11,3 +11,4 @@
 //= require store/spree_14rank
 
 //= require_tree .
+//= require store/spree_i18n

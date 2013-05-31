@@ -60,9 +60,10 @@ gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
-gem 'spree', :git => 'http://github.com/spree/spree.git', :tag => 'v2.0.0.rc1'
+gem 'spree', :git => 'http://github.com/spree/spree.git', :branch => '2-0-stable'
 gem 'spree_gateway', :git => 'http://github.com/spree/spree_gateway', :branch => '2-0-stable'
 gem 'spree_auth_devise', :git => 'http://github.com/spree/spree_auth_devise', :branch => '2-0-stable'
+gem 'spree_i18n', :git => 'http://github.com/spree/spree_i18n.git', :branch => '3-0-stable'
 
 # gem 'spree_14rank', :path => '../spree_14rank'
 gem 'spree_14rank', :git => 'https://github.com/14bis/14rank.git'
