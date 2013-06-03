@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= t(:listing_products) %>
+  <%= Spree.t(:listing_products) %>
 <% end %>
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to t(:new_product), new_management_product_url, :icon => 'icon-plus', :id => 'management_new_product_link' %>
+    <%= button_link_to Spree.t(:new_product), new_management_product_url, :icon => 'icon-plus', :id => 'management_new_product_link' %>
   </li>
 <% end %>
 
@@ -19,8 +19,8 @@
     </colgroup>
     <thead>
       <tr>
-        <th><%= t(:name) %></th>
-        <th><%= t(:price) %></th>
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:price) %></th>
         <th><%= t(:status) %></th>
         <th class="actions"></th>
       </tr>

@@ -6,29 +6,15 @@ FactoryGirl.define do
     email                 "user@spree.com"
     password              "password"
     password_confirmation "password"
-    ignore do
-      role "user"
-    end
+    spree_roles           { [Spree::Role.find_by_name("user")] }
     factory :admin do
-      ignore do
-        role "admin"
-      end
+      email               "admin@spree.com"
+      spree_roles         { [Spree::Role.find_by_name("admin")] }
     end
     factory :user_provider do
-      ignore do
-        role "provider"
-      end
-    end
-
-    after(:create) do |user, evaluator|
-      if evaluator.role == "admin"
-         user.spree_roles = [Spree::Role.find_by_name("admin")]
-      elsif evaluator.role == "provider"
-        user.provider = FactoryGirl.create(:provider)
-        user.spree_roles = [Spree::Role.find_by_name("provider")]
-      else
-        user.spree_roles = [Spree::Role.find_by_name("user")]
-      end
+      email               "provider@spree.com"
+      spree_roles         { [Spree::Role.find_by_name("provider")] }
+      provider
     end
   end
 

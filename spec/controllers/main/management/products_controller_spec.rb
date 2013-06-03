@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Management::ProductsController do
+describe Main::Management::ProductsController do
 
   before(:all) { @user_provider = FactoryGirl.create(:user_provider) }
   after(:all) { 

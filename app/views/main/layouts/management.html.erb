@@ -41,10 +41,10 @@
           <nav data-hook="admin_login_navigation_bar" class="columns eleven">
             <% if spree_current_user %>
               <ul id="login-nav" class="inline-menu">
-                <li data-hook="user-logged-in-as"><%= t(:logged_in_as) %>: <%= spree_current_user.email %></li>
-                <li data-hook="user-account-link"><i class="icon-user"></i><%= link_to t(:account), spree.edit_user_path(spree_current_user) %></li>
-                <li data-hook="user-logout-link"><i class="icon-signout"></i><%= link_to t(:logout), spree.logout_path %></li>
-                <li data-hook="store-frontend-link"><i class="icon-external-link"></i><%= link_to t(:store), spree.root_path, :target => '_blank' %></li>
+                <li data-hook="user-logged-in-as"><%= Spree.t(:logged_in_as) %>: <%= spree_current_user.email %></li>
+                <li data-hook="user-account-link"><i class="icon-user"></i><%= link_to Spree.t(:account), spree.edit_user_path(spree_current_user) %></li>
+                <li data-hook="user-logout-link"><i class="icon-signout"></i><%= link_to Spree.t(:logout), spree.destroy_spree_user_session_path %></li>
+                <li data-hook="store-frontend-link"><i class="icon-external-link"></i><%= link_to Spree.t(:store), spree.root_path, :target => '_blank' %></li>
               </ul>
             <% end %>
           </nav>
@@ -56,7 +56,7 @@
         <div class="container">
           <div class="sixteen columns main-menu-wrapper">
             <ul data-hook="admin_tabs" class="inline-menu fullwidth-menu">
-              <%= render :partial => 'management/shared/tabs' %>
+              <%= render :partial => 'main/management/shared/tabs' %>
             </ul>
           </div>
         </div>

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Management::PublicationRequestsController do
+describe Main::Management::PublicationRequestsController do
   skeep_authorize!
 
   let(:product) { FactoryGirl.create(:product) }

@@ -1,4 +1,4 @@
-module Spree
+module Main
   class ProvidersController < Spree::StoreController
     load_resource :provider
 
@@ -6,4 +6,4 @@ module Spree
     end
 
   end
-end
+end 

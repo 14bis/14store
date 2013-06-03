@@ -1,15 +1,17 @@
 Store14::Application.routes.draw do
 
-  mount Spree::Core::Engine, :at => '/'
-
-  namespace :management do
-    resources :products do
-      resources :publication_requests, :only => [:create, :update]
+  scope :module => "main" do
+    resources :providers, :only => [:show]
+    namespace :management do
+      resources :products do
+        resources :publication_requests, :only => [:create, :update]
+      end
     end
+    match '/management', :to => 'management/products#index'
   end
-  
-  match '/management', :to => 'management/products#index'
 
+
+  mount Spree::Core::Engine, :at => '/'
 
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
@@ -77,8 +79,6 @@ Store14::Application.routes.draw do
 end
 
   Spree::Core::Engine.routes.prepend do
-
-    resources :providers, :only => [:show]
 
     namespace :admin do
       resources :providers, :except => [:new, :create]

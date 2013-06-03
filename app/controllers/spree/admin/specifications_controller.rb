@@ -1,7 +1,5 @@
 class Spree::Admin::SpecificationsController < Spree::Admin::ResourceController
-  # GET /admin/providers
-  # GET /admin/providers.json
-  
+
   def model_class
     Specification
   end
