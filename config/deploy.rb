@@ -43,6 +43,20 @@ namespace :deploy do
   end
 end
 
+# Upload gems to the vendor/cache onto the server to avoid memory errors
+set :bundle_flags, "--local --deployment --quiet"
+desc "Package gems locally and then rsync to app servers"
+task :upload_gems, :only => { :primary => true } do
+  # run_locally "bundle package --all;"
+  servers = find_servers :roles => [:app], :except => { :no_release => true }
+  servers.each do |server|
+    run_locally "rsync -av ./vendor/cache/ #{user}@#{server}:#{release_path}/vendor/cache/ --delete;"
+  end
+  run_locally "rm -rf ./vendor/cache"
+  run_locally "rm -rf .bundle/"
+end
+before "bundle:install", "upload_gems"
+
 # use database.yml from server instead of the one public on github
 task :symlink_database_yml do
   run "rm #{release_path}/config/database.yml"
