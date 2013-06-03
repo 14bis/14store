@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/spree/spree.git
-  revision: c90bed3bd16aa67f4b438fc308a97d448dece121
+  revision: 1a2537f879843226b44faa601d49f8ddfe939d49
   branch: 2-0-stable
   specs:
     spree (2.0.0)
@@ -60,7 +60,7 @@ GIT
 
 GIT
   remote: http://github.com/spree/spree_auth_devise
-  revision: 1b571e1be0daf8b8ee3fe4792ded8cd8e4fc4d0f
+  revision: 153a9936880db9340fa9f371fc6b4c38483ca916
   branch: 2-0-stable
   specs:
     spree_auth_devise (2.0.0)
@@ -93,10 +93,10 @@ GIT
 
 GIT
   remote: https://github.com/14bis/14rank.git
-  revision: 7ac781266c9fa23d862ad08dddf3c2d847239a40
+  revision: c46b4c5d39643bd57e7318672d3c362ac464f9c8
   specs:
     spree_14rank (0.0.2)
-      spree_core (~> 2.0.0.beta)
+      spree_core (~> 2.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -252,7 +252,7 @@ GEM
     mime-types (1.23)
     money (5.1.1)
       i18n (~> 0.6.0)
-    multi_json (1.7.4)
+    multi_json (1.7.5)
     multi_xml (0.5.3)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
