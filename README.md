@@ -1,4 +1,7 @@
 #14STORE
+
+#MOVED TO: git.swx.com.br
+( bitbucket.org/swxsoftwares/14store )
 --
 
 **14STORE is a module of the 14BIS project.**
@@ -24,6 +27,9 @@ Give to small businesses the opportunity to acquire, deliver and use softwares w
 -
 
 ###Pt-BR
+#MUDAMOS PARA: git.swx.com.br
+( bitbucket.org/swxsoftwares/14store )
+
 **14STORE é um módulo do projeto 14BIS.**
 
 **14STORE é uma loja de aplicativos open source desenvolvida com Ruby On Rails e Spree.**
